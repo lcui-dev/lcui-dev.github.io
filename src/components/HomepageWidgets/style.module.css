@@ -1,0 +1,103 @@
+.header {
+  display: flex;
+  align-items: flex-end;
+}
+
+.left {
+  margin-right: auto;
+}
+
+.widgets {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0 -1rem;
+}
+
+.widget {
+  width: 33.333%;
+  padding: 1rem;
+}
+
+.widgetPreview {
+  background-color: var(--ifm-color-secondary-light);
+  height: 320px;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.widgetPreview {
+  font-size: 14px;
+  position: relative;
+  overflow: hidden;
+}
+
+.widgetPreview * {
+  transition: 0.2s all;
+}
+
+.widgetPreview :global(.btn) {
+  font-size: 1em;
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  color: #333;
+  line-height: 1.5;
+  padding: 0.5em 1em;
+  border-radius: 4px;
+  border: 1px solid #e9ecef;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.widgetPreview :global(.btn):hover,
+.widgetPreview :global(.btn):focus {
+  color: #1890ff;
+  border-color: #1890ff;
+  background-color: #fff;
+}
+
+.widgetPreview :global(.btn-primary) {
+  color: #fff;
+  border-color: #1890ff;
+  background-color: #1890ff;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.widgetPreview :global(.btn-primary):hover,
+.widgetPreview :global(.btn-primary):hover:focus {
+  border-color: #4ba9ff;
+  background-color: #4ba9ff;
+}
+
+.widgetPreview :global(.btn-primary):hover,
+.widgetPreview :global(.btn-primary):hover:focus {
+  color: #fff;
+}
+
+.widgetPreview :global(.btn-primary):active,
+.widgetPreview :global(.btn-primary):active:focus {
+  color: #fff;
+  background-color: #0076e4;
+  border-color: #0076e4;
+}
+
+.widgetPreview :global(.btn-primary):focus {
+  color: #fff;
+  background-color: #1890ff;
+  box-shadow: 0 0 0 2.8px rgba(24, 144, 255, 0.2);
+}
+
+.widgetPreview :global(.btn-primary.disabled) {
+  background-color: #1890ff;
+  border-color: #1890ff;
+}
+
+.dropdown {
+  padding-bottom: 120px;
+}

@@ -1,0 +1,48 @@
+/**
+ * CSS files with the .module.css suffix will be treated as CSS modules
+ * and scoped locally.
+ */
+
+.heroBanner {
+  --left-rgb: 82, 196, 26;
+  --right-rgb: 160, 217, 17;
+  --bs-body-bg-rgb: 255,255,255;
+  --bs-primary-rgb: 13,110,253;
+  --bd-accent-rgb: 255,228,132;
+  --bd-violet-rgb: 112.520718,44.062154,249.437846;
+
+  overflow: hidden;
+  text-align: center;
+  padding: 8rem 2rem;
+  background-image: linear-gradient(
+      180deg,
+      rgba(var(--bs-body-bg-rgb), 0.01),
+      rgba(var(--bs-body-bg-rgb), 1) 85%
+    ),
+    radial-gradient(
+      ellipse at top left,
+      rgba(var(--bs-primary-rgb), 0.5),
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at top right,
+      rgba(var(--bd-accent-rgb), 0.5),
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at center right,
+      rgba(var(--right-rgb), 0.5),
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at center left,
+      rgba(var(--left-rgb), 0.5),
+      transparent 50%
+    );
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
