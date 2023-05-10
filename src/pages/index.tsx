@@ -4,9 +4,9 @@ import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import HomepageFeatures from "@site/src/components/HomepageFeatures";
-
+import HomepageWidgets from "@site/src/components/HomepageWidgets";
+import HomepageExample from "@site/src/components/HomepageExample";
 import styles from "./index.module.css";
-import HomepageWidgets from "../components/HomepageWidgets";
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
@@ -44,6 +44,7 @@ export default function Home(): JSX.Element {
       <HomepageHeader />
       <main>
         <HomepageFeatures />
+        <HomepageExample />
         <HomepageWidgets />
       </main>
     </Layout>
