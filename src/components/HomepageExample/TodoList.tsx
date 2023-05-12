@@ -27,7 +27,7 @@ function TaskForm({ onCreate }: { onCreate: (v: string) => void }) {
   );
 }
 
-export default function TodoList() {
+export default function TodoList({ className }: { className?: string }) {
   const idRef = useRef(0);
   const filters = ["all", "active", "completed"] as const;
   const [filter, setFilter] = useState<"all" | TaskItemData["status"]>("all");
@@ -54,7 +54,7 @@ export default function TodoList() {
     },
   ]);
   return (
-    <div className={styles.root}>
+    <div className={classNames(styles.root, className)}>
       <div className={styles.app}>
         <div className={styles.header}>
           <div className={styles.title}>Todo list</div>

@@ -1,0 +1,18 @@
+.editor {
+    border: 1px solid var(--ifm-color-emphasis-300);
+    border-radius: var(--ifm-global-radius);
+}
+
+.editor :global(.tabs) {
+    margin-bottom: -1rem;
+    border-bottom: 1px solid var(--ifm-color-emphasis-300);
+}
+
+.editor :global(.tabs-container) {
+    margin: 0;
+}
+
+.editor [role="tabpanel"] {
+  height: 520px;
+  overflow: auto;
+}

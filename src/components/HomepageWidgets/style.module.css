@@ -21,7 +21,7 @@
 }
 
 .widgetPreview {
-  background-color: var(--ifm-color-secondary-light);
+  background-color: var(--ifm-color-secondary-lightest);
   height: 320px;
   margin-bottom: 1rem;
   border-radius: 8px;
