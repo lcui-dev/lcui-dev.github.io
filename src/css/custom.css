@@ -53,10 +53,14 @@
 }
 
 .homepage-main h2 {
-  font-size: 48px;
+  font-size: 40px;
 }
 
 .homepage-main .description {
   font-size: 20px;
+  opacity: 0.8;
+}
+
+.text--muted {
   opacity: 0.8;
 }

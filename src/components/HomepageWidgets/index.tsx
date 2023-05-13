@@ -1,12 +1,14 @@
 import React, { useState } from "react";
+import classNames from "classnames";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Checkbox from "./Checkbox";
 import Switch from "./Switch";
 import Radio from "./Radio";
-import styles from "./style.module.css";
-import "./lc-design.css";
 import Dropdown from "./Dropdown";
 import Message from "./Message";
-import classNames from "classnames";
+import "./lc-design.css";
+import styles from "./style.module.css";
+import { faExternalLink } from "@fortawesome/free-solid-svg-icons";
 
 function CheckboxPreview() {
   return (
@@ -178,22 +180,10 @@ export default function HomepageWidgets() {
   return (
     <section>
       <div className="container">
-        <header className={styles.header}>
-          <div className={styles.left}>
-            <div>Cross-platform desktop UI</div>
-            <h2>
-              Modern UI paradigms. <br />
-              Ready for desktop.
-            </h2>
-          </div>
-          <a
-            className="button button--outline button--primary"
-            href="https://github.com/lcui-dev/lc-design/tree/develop/docs/components"
-            target="_blank"
-          >
-            Explore UI widgets
-          </a>
-        </header>
+        <h2 className="text--center">Make the user interface more modern</h2>
+        <p className="text--center description">
+          We provide a modern component library to meet your needs
+        </p>
         <ul className={styles.widgets}>
           {widgets.map((w) => (
             <li key={w.name} className={styles.widget}>
@@ -203,6 +193,16 @@ export default function HomepageWidgets() {
             </li>
           ))}
         </ul>
+        <div className="text--center margin-top--lg">
+          <a
+            className="button button--outline button--primary"
+            href="https://github.com/lcui-dev/lc-design/tree/develop/docs/components"
+            target="_blank"
+          >
+            Explore UI widgets
+            <FontAwesomeIcon icon={faExternalLink} className="margin-left--sm" />
+          </a>
+        </div>
       </div>
     </section>
   );

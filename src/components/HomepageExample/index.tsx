@@ -6,9 +6,9 @@ import CSource from "!!raw-loader!./todolist.c";
 import XmlSource from "!!raw-loader!./todolist.xml";
 import CssSource from "!!raw-loader!./todolist.css";
 import TodoList from "./TodoList";
+import Window from "../Window";
 import ExampleEditor from "../ExampleEditor";
 import styles from "./index.module.css";
-import Window from "../Window";
 
 export default function HomepageExample() {
   return (

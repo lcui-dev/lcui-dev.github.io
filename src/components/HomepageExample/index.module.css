@@ -6,9 +6,9 @@
 }
 
 .editor {
-  flex: 2;
+  flex: 3;
 }
 
 .output {
-  flex: 1;
+  flex: 2;
 }
