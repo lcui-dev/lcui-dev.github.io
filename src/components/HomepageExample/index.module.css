@@ -7,8 +7,10 @@
 
 .editor {
   flex: 3;
+  min-width: 240px;
 }
 
 .output {
   flex: 2;
+  min-width: 200px;
 }

@@ -17,8 +17,7 @@ export default function HomepageExample() {
         <h2 className="text--center">Create user interfaces from widgets</h2>
         <p className="text--center description margin-bottom--lg margin-top--lg">
           LCUI lets you build user interfaces out of individual pieces called
-          widgets. Create your own LCUI widgets like Thumbnail, LikeButton, and
-          Video. Then combine them into entire screens, pages, and apps.
+          widgets. Create your own LCUI widgets and combine them into entire screens, pages, and apps.
         </p>
         <div className={styles.pack}>
           <div className={styles.editor}>

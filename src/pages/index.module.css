@@ -9,6 +9,31 @@
 
 .buttons {
   display: flex;
-  align-items: center;
   justify-content: center;
+}
+
+.input {
+  position: relative;
+}
+
+.input input {
+  --ifm-button-size-multiplier: 1.35;
+
+  height: 100%;
+  line-height: 1.5;
+  font-size: calc(0.875rem * var(--ifm-button-size-multiplier));
+  padding: 0.5rem 2.5rem 0.5rem 1rem;
+  background: var(--ifm-pre-background);
+  border-radius: var(--ifm-button-border-radius);
+  border: none;
+  cursor: pointer;
+}
+
+.copy {
+  right: 1rem;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  display: flex;
+  align-items: center;
 }

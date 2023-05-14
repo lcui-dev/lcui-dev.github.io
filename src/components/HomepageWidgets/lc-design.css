@@ -161,7 +161,7 @@
   top: 100%;
   left: 0;
   position: absolute;
-  z-index: 1000;
+  z-index: 1;
   display: none;
   min-width: 140px;
   padding: 7px 0;
