@@ -76,15 +76,25 @@ const config = {
         items: [
           {
             type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
+            sidebarId: 'docsSidebar',
             position: 'left',
-            label: 'Tutorial',
+            label: 'Docs',
+          },
+          {
+            type: 'docSidebar',
+            sidebarId: 'tutorialsSidebar',
+            position: 'left',
+            label: 'Tutorials',
           },
           {to: '/blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
+            href: 'https://github.com/lcui-dev/website',
             label: 'GitHub',
             position: 'right',
+          },
+          {
+            type: 'localeDropdown',
+            position: 'right'
           },
         ],
       },
