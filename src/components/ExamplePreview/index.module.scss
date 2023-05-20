@@ -1,0 +1,39 @@
+.pack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 2rem 0;
+}
+
+.editor {
+  flex: 3;
+  min-width: 240px;
+}
+
+.editor [role="tabpanel"] > div {
+  min-height: 100%;
+}
+
+.output {
+  flex: 2;
+  min-width: 200px;
+  position: relative;
+}
+
+.box {
+  border: 2px solid var(--ifm-color-primary);
+  border-radius: 4px;
+  background: rgba(46, 133, 85, 0.1);
+  position: absolute;
+}
+
+.editor :global {
+  .auto-highlight .token-line {
+    margin: 0 calc(var(--ifm-pre-padding) * -1);
+    padding: 0 var(--ifm-pre-padding);
+
+    &:hover {
+      background-color: var(--docusaurus-highlighted-code-line-bg);
+    }
+  }
+}

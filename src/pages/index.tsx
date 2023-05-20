@@ -31,7 +31,7 @@ function CopyInput({ className, value }: { className: string; value: string }) {
   return (
     <CopyToClipboard text={value} onCopy={() => setCopied(true)}>
       <div className={clsx(styles.input, className)}>
-        <input type="text" value={value} />
+        <input type="text" value={value} readOnly />
         <div className={styles.copy}>
           {copied ? (
             <FontAwesomeIcon icon={faCheck} />

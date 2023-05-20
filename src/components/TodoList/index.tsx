@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import React, { useRef, useState } from "react";
-import styles from "./style.module.css";
+import "./style.scss";
+import styles from "./style.module.scss";
 
 interface TaskItemData {
   id: number;
@@ -13,7 +14,7 @@ function TaskForm({ onCreate }: { onCreate: (v: string) => void }) {
   return (
     <input
       type="text"
-      className={styles["task-input"]}
+      className="task-input"
       placeholder="Add a new task..."
       value={value}
       onChange={({ target }) => setValue(target.value)}
@@ -39,13 +40,13 @@ export function TaskItem({
   return (
     <div
       className={classNames(
-        styles["task-item"],
-        item.status === "completed" && styles["is-completed"]
+        "task-item",
+        item.status === "completed" && "is-completed"
       )}
     >
-      <div className={styles["task-status"]} onClick={onToggle} />
-      <div className={styles["task-name"]}>{item.name}</div>
-      <div className={styles["task-delete"]} onClick={onDelete} />
+      <div className="task-status" onClick={onToggle} />
+      <div className="task-name">{item.name}</div>
+      <div className="task-delete" onClick={onDelete} />
     </div>
   );
 }
@@ -78,19 +79,20 @@ export default function TodoList({ className }: { className?: string }) {
   ]);
   return (
     <div className={classNames(styles.root, className)}>
-      <div className={styles.app}>
-        <div className={styles.header}>
-          <div className={styles.title}>Todo list</div>
-          <div className={styles.tools}>
-            <div className={styles.count}>
+      <div className="app">
+        <div className="header">
+          <div className="title">Todo list</div>
+          <div className="tools">
+            <div className="count">
               {list.length} {list.length > 1 ? "tasks" : "task"}
             </div>
-            <div className={styles["task-filters"]}>
+            <div className="task-filters">
               {filters.map((s) => (
                 <div
+                  key={s}
                   className={classNames(
-                    styles["task-filter"],
-                    s === filter && styles["is-active"]
+                    "task-filter",
+                    s === filter && "is-active"
                   )}
                   onClick={() => setFilter(s)}
                 >
@@ -105,7 +107,7 @@ export default function TodoList({ className }: { className?: string }) {
             setList([...list, { name, id: idRef.current++, status: "active" }]);
           }}
         />
-        <div className={styles["task-list"]}>
+        <div className="task-list">
           {list
             .filter((item) => filter === "all" || item.status === filter)
             .map((item) => (

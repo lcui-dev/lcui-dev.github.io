@@ -19,16 +19,46 @@ export default function HomepageAdvancedExample() {
           style changes in the event handlers.
         </p>
         <ExamplePreview
+          highlightMap={{
+            0: {
+              5: ".app",
+              6: ".header",
+              7: ".title",
+              8: ".tools",
+              9: ".count",
+              10: ".task-filters",
+              11: ".task-filter:eq(0)",
+              12: ".task-filter:eq(1)",
+              13: ".task-filter:eq(2)",
+              14: ".task-filters",
+              15: ".tools",
+              16: ".header",
+              17: ".task-input",
+              18: ".task-list",
+              19: ".app",
+            },
+          }}
           editorContent={
             <Tabs>
-              <TabItem value="xml" label="todolist.xml" default>
-                <CodeBlock language="xml">{XmlSource}</CodeBlock>
+              <TabItem
+                value="xml"
+                label="todolist.xml"
+                className="auto-highlight"
+                default
+              >
+                <CodeBlock language="xml" showLineNumbers>
+                  {XmlSource}
+                </CodeBlock>
               </TabItem>
               <TabItem value="css" label="todolist.css">
-                <CodeBlock language="css">{CssSource}</CodeBlock>
+                <CodeBlock language="css" showLineNumbers>
+                  {CssSource}
+                </CodeBlock>
               </TabItem>
               <TabItem value="c" label="todolist.c">
-                <CodeBlock language="c">{CSource}</CodeBlock>
+                <CodeBlock language="c" showLineNumbers>
+                  {CSource}
+                </CodeBlock>
               </TabItem>
             </Tabs>
           }

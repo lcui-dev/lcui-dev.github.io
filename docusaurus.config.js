@@ -58,6 +58,8 @@ const config = {
     ],
   ],
 
+  plugins: ['docusaurus-plugin-sass'],
+
   customFields: {
     description: "An open source UI toolkit for building cross-platform desktop apps.",
   },

@@ -41,16 +41,51 @@ export default function HomepageExample() {
           screens, pages, and apps.
         </p>
         <ExamplePreview
+          highlightMap={{
+            0: {
+              5: ".task-item:eq(0)",
+              6: ".task-item:eq(0) .task-status",
+              7: ".task-item:eq(0) .task-name",
+              8: ".task-item:eq(0) .task-delete",
+              9: ".task-item:eq(0)",
+              10: ".task-item:eq(1)",
+              11: ".task-item:eq(1) .task-status",
+              12: ".task-item:eq(1) .task-name",
+              13: ".task-item:eq(1) .task-delete",
+              14: ".task-item:eq(1)",
+              15: ".task-item:eq(2)",
+              16: ".task-item:eq(2) .task-status",
+              17: ".task-item:eq(2) .task-name",
+              18: ".task-item:eq(2) .task-delete",
+              19: ".task-item:eq(2)",
+              20: ".task-item:eq(3)",
+              21: ".task-item:eq(3) .task-status",
+              22: ".task-item:eq(3) .task-name",
+              23: ".task-item:eq(3) .task-delete",
+              24: ".task-item:eq(3)",
+            },
+          }}
           editorContent={
             <Tabs>
-              <TabItem value="xml" label="todolist.xml" default>
-                <CodeBlock language="xml">{XmlSource}</CodeBlock>
+              <TabItem
+                value="xml"
+                label="todolist.xml"
+                className="auto-highlight"
+                default
+              >
+                <CodeBlock language="xml" showLineNumbers>
+                  {XmlSource}
+                </CodeBlock>
               </TabItem>
               <TabItem value="css" label="todolist.css">
-                <CodeBlock language="css">{CssSource}</CodeBlock>
+                <CodeBlock language="css" showLineNumbers>
+                  {CssSource}
+                </CodeBlock>
               </TabItem>
               <TabItem value="c" label="todolist.c">
-                <CodeBlock language="c">{CSource}</CodeBlock>
+                <CodeBlock language="c" showLineNumbers>
+                  {CSource}
+                </CodeBlock>
               </TabItem>
             </Tabs>
           }

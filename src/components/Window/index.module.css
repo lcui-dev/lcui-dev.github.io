@@ -8,13 +8,38 @@
 
 .window-header {
   flex: none;
+  display: flex;
   font-size: 12px;
   line-height: 20px;
-  padding: 6px 16px;
+  padding: 6px 0 6px 16px;
   border-bottom: 1px solid var(--ifm-color-emphasis-300);
   background-color: var(--ifm-color-secondary-lightest);
 }
 
 .window-content {
   flex: auto;
+}
+
+.window-buttons {
+  flex: none;
+  margin: -6px 0 -6px auto;
+  white-space: nowrap;
+  display: flex;
+}
+
+.window-button {
+  width: 40px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.window-button:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.window-close:hover {
+  background: #f00;
+  color: #fff;
 }
