@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import React, { useRef, useState } from "react";
-import styles from "./TodoList.module.css";
+import styles from "./style.module.css";
 
 interface TaskItemData {
   id: number;
@@ -24,6 +24,29 @@ function TaskForm({ onCreate }: { onCreate: (v: string) => void }) {
         }
       }}
     />
+  );
+}
+
+export function TaskItem({
+  item,
+  onToggle,
+  onDelete,
+}: {
+  item: TaskItemData;
+  onToggle?(): void;
+  onDelete?(): void;
+}) {
+  return (
+    <div
+      className={classNames(
+        styles["task-item"],
+        item.status === "completed" && styles["is-completed"]
+      )}
+    >
+      <div className={styles["task-status"]} onClick={onToggle} />
+      <div className={styles["task-name"]}>{item.name}</div>
+      <div className={styles["task-delete"]} onClick={onDelete} />
+    </div>
   );
 }
 
@@ -86,39 +109,28 @@ export default function TodoList({ className }: { className?: string }) {
           {list
             .filter((item) => filter === "all" || item.status === filter)
             .map((item) => (
-              <div
+              <TaskItem
                 key={item.id}
-                className={classNames(
-                  styles["task-item"],
-                  item.status === "completed" && styles["is-completed"]
-                )}
-              >
-                <div
-                  className={styles["task-status"]}
-                  onClick={() =>
-                    setList(
-                      list.map((target) =>
-                        target.id === item.id
-                          ? {
-                              ...target,
-                              status:
+                item={item}
+                onToggle={() =>
+                  setList(
+                    list.map((target) =>
+                      target.id === item.id
+                        ? {
+                            ...target,
+                            status:
                               target.status === "completed"
-                                  ? "active"
-                                  : "completed",
-                            }
-                          : target
-                      )
+                                ? "active"
+                                : "completed",
+                          }
+                        : target
                     )
-                  }
-                />
-                <div className={styles["task-name"]}>{item.name}</div>
-                <div
-                  className={styles["task-delete"]}
-                  onClick={() =>
-                    setList(list.filter((target) => target.id !== item.id))
-                  }
-                />
-              </div>
+                  )
+                }
+                onDelete={() =>
+                  setList(list.filter((target) => target.id !== item.id))
+                }
+              />
             ))}
         </div>
       </div>

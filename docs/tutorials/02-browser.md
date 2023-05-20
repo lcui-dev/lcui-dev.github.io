@@ -1,13 +1,5 @@
----
-title: 造一个简单的浏览器
-repo: lc-ui/lcui-router-app
-toc: true
-categories:
-  - 技术文章
-  - LCUI
-  - LCDesign
-  - LCUIRouter
----
+# 浏览器
+
 ## 前言
 
 本教程将通过一个简单的仿浏览器界面的程序，向你介绍关于构建图形界面程序的基础知识，掌握这些知识后，你将会对图形界面开发有更加深刻的理解。

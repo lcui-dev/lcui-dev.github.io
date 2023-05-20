@@ -182,7 +182,7 @@ export default function HomepageWidgets() {
       <div className="container">
         <h2 className="text--center">Make the user interface more modern</h2>
         <p className="text--center description">
-          We provide a modern component library to meet your needs
+          We provide a modern widget library to meet your needs
         </p>
         <ul className={styles.widgets}>
           {widgets.map((w) => (

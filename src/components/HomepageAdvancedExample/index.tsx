@@ -5,40 +5,18 @@ import CodeBlock from "@theme/CodeBlock";
 import CSource from "!!raw-loader!./todolist.c";
 import XmlSource from "!!raw-loader!./todolist.xml";
 import CssSource from "!!raw-loader!./todolist.css";
+import TodoList from "../TodoList";
 import ExamplePreview from "../ExamplePreview";
-import { TaskItem } from "../TodoList";
 
-export default function HomepageExample() {
-  const list = [
-    {
-      id: 1,
-      name: "Download LCUI source code",
-      status: "completed",
-    },
-    {
-      id: 2,
-      name: "Build LCUI",
-      status: "completed",
-    },
-    {
-      id: 3,
-      name: "Read LCUI tutorials",
-      status: "active",
-    },
-    {
-      id: 4,
-      name: "Create my LCUI application",
-      status: "active",
-    },
-  ] as const;
+export default function HomepageAdvancedExample() {
   return (
     <section>
       <div className="container">
-        <h2 className="text--center">Create user interfaces from widgets</h2>
+        <h2 className="text--center">Add interactivity wherever you need it</h2>
         <p className="text--center description margin-bottom--lg margin-top--lg">
-          LCUI lets you build user interfaces out of individual pieces called
-          widgets. Create your own LCUI widgets and combine them into entire
-          screens, pages, and apps.
+          The widgets in LCUI are event driven. You can add event handlers to
+          widgets in response to interactions, and then make some content or
+          style changes in the event handlers.
         </p>
         <ExamplePreview
           editorContent={
@@ -54,14 +32,8 @@ export default function HomepageExample() {
               </TabItem>
             </Tabs>
           }
-          windowTitle="Todo List"
-          windowContent={
-            <>
-              {list.map((item) => (
-                <TaskItem key={item.id} item={item} />
-              ))}
-            </>
-          }
+          windowTitle="Todo list"
+          windowContent={<TodoList />}
         />
       </div>
     </section>

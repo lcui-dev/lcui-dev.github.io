@@ -13,7 +13,7 @@ import Layout from "@theme/Layout";
 import HomepageFeatures from "@site/src/components/HomepageFeatures";
 import HomepageWidgets from "@site/src/components/HomepageWidgets";
 import HomepageExample from "@site/src/components/HomepageExample";
-import HomepageRendering from "../components/HomepageRendering";
+import HomepageAdvancedExample from "@site/src/components/HomepageAdvancedExample";
 import styles from "./index.module.css";
 
 function CopyInput({ className, value }: { className: string; value: string }) {
@@ -83,6 +83,7 @@ export default function Home(): JSX.Element {
       <main className="homepage-main">
         <HomepageFeatures />
         <HomepageExample />
+        <HomepageAdvancedExample />
         <HomepageWidgets />
         {/* TODO: add template section */}
         {/* TODO: add showcase section */}

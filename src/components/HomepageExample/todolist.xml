@@ -2,20 +2,25 @@
 <lcui-app>
   <resource type="text/css" src="todolist.css"/>
   <ui>
-    <w class="app">
-      <w class="header">
-        <text class="title">Todo list</text>
-        <w class="tools">
-          <text id="count" class="count" />
-          <w id="filters" class="task-filters">
-            <text class="task-filter" data-value="all">All</text>
-            <text class="task-filter" data-value="active">Active</text>
-            <text class="task-filter" data-value="completed">Completed</text>
-          </w>
-        </w>
-      </w>
-      <textedit id="input" class="task-input" placeholder="Add a new task..." />
-      <w id="list" class="task-list" />
+    <w class="task-item is-completed">
+      <w class="task-status" />
+      <text class="task-name">Download LCUI source code</text>
+      <w class="task-delete" />
+    </w>
+    <w class="task-item is-completed">
+      <w class="task-status" />
+      <text class="task-name">Build LCUI</text>
+      <w class="task-delete" />
+    </w>
+    <w class="task-item">
+      <w class="task-status" />
+      <text class="task-name">Read LCUI tutorials</text>
+      <w class="task-delete" />
+    </w>
+    <w class="task-item">
+      <w class="task-status" />
+      <text class="task-name">Create my LCUI application</text>
+      <w class="task-delete" />
     </w>
   </ui>
 </lcui-app>
