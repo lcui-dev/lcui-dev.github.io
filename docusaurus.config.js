@@ -41,15 +41,18 @@ const config = {
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+          editUrl: "https://github.com/lcui-dev/website/tree/main/docs",
+          versions: {
+            current: {
+              label: `3.x 🚧`,
+            },
+          },
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+          editUrl: "https://github.com/lcui-dev/website/tree/main/docs",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
@@ -81,7 +84,7 @@ const config = {
             type: "docSidebar",
             sidebarId: "docsSidebar",
             position: "left",
-            label: "文档",
+            label: "指南",
           },
           {
             type: "docSidebar",
@@ -94,6 +97,9 @@ const config = {
             href: "https://github.com/lcui-dev/website",
             label: "GitHub",
             position: "right",
+          },{
+            type: 'docsVersionDropdown',
+            position: 'right',
           },
           {
             type: "localeDropdown",
