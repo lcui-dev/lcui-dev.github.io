@@ -60,13 +60,13 @@ document.addEventListener("touchend", dropFabric);
 
 这段代码由循环语句、条件判断语句和函数调用语句组成，转译成 C 语言非常简单。
 
-其中的 `Math.floor(points.length/3)`，可以转译为 `points.length / 3`，因为在 C 语言中两个整数相除的结果也是整数，没有小数。
+其中的 `Math.floor(points.length/3)`，可以转译为 `points.length / 3`，因为在 C 语言中两个整数相除的结果也是整数，无需再取整。
 
 末尾的几行 `document.addEventListener()` 函数调用属于 UI 部分，可以忽略。
 
 接下来是参数列表，上文中有提到 fw、fh、htc、vtc 这四个变量是初始化函数的局部变量，而初始化函数内部调用的 `addPt()` 函数依赖 canvasWidth 和 canvasHeight，因此，该函数需要四个参数：fw、fh、canvasWidth、 canvasHeight。
 
-至此，我们就能得出完整的初始化函数定义代码：
+至此，我们就能得出完整的初始化函数的实现代码：
 
 ```c
 /**

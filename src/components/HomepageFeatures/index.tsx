@@ -5,7 +5,7 @@ export default function HomepageFeatures(): JSX.Element {
   const features = [
     [
       "Portable UI library",
-      "UI library has few dependencies and no system API dependencies",
+      "UI library has few dependencies and no system API dependencies.",
     ],
     [
       "Small Graphics Library",
@@ -27,7 +27,7 @@ export default function HomepageFeatures(): JSX.Element {
       "Window Mapping",
       "Map widget to the system window so that its content can be synchronized to the window.",
     ],
-    ["Preset Widgets", "Text, TextEdit, Button, ScrollBar, etc"],
+    ["Preset Widgets", "Text, TextEdit, Button, ScrollBar, etc."],
     ["CSS Support", "Parse CSS, select styles, and calculate styles."],
     ["XML Support", "Declare User Interface with XML."],
   ];

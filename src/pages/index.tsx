@@ -62,7 +62,7 @@ function HomepageHeader() {
             className="margin-right--sm"
             value="npx create-lcui-app@latest"
           />
-          <Link className="button button--primary button--lg" to="/docs/intro">
+          <Link className="button button--primary button--lg" to="/docs/introduction">
             Get Started
             <FontAwesomeIcon icon={faArrowRight} className="margin-left--sm" />
           </Link>

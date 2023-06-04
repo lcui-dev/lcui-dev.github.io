@@ -88,9 +88,14 @@ const config = {
           },
           {
             type: "docSidebar",
-            sidebarId: "tutorialsSidebar",
+            sidebarId: "tutorialSidebar",
             position: "left",
             label: "教程",
+          },
+          {
+            type: "docSidebar",
+            sidebarId: "rfcSidebar",
+            position: "left",
           },
           { to: "/blog", label: "博客", position: "left" },
           {

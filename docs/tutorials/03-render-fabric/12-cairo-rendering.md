@@ -42,7 +42,7 @@ function renderSpans() {
 
 由此，我们就可以写出完整的绘制代码：
 
-```c
+```c title=src/main.c
 // displays points
 void render_points(cairo_t *cr)
 {
@@ -78,7 +78,7 @@ void render_spans(cairo_t *cr)
 }
 ```
 
-然后，是转译 `update()` 函数及相关全局变量：
+然后，转译 `update()` 函数及相关全局变量：
 
 ```js
 var displayPoints = false;
@@ -119,7 +119,7 @@ void Fabric_update(void)
 
 剩下代码可以移入 `ui_fabric_on_frame()` 函数中：
 
-```c
+```c title=src/main.c
 void ui_fabric_on_frame(ui_widget_t *w)
 {
         ui_canvas_context_t *ctx = ui_canvas_get_context(w);
