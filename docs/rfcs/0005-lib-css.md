@@ -48,15 +48,80 @@ int main(void)
 ## 动机
 
 - **减少依赖项：** 样式数据库操作依赖线程库的互斥锁、font-family 属性解析器依赖字体库、@font-face 规则解析器依赖 UI 库的 TextView 部件。
-- **纠正 CSS 相关数据类型的命名：** 部分 CSS 相关数据类型命名并不正确，例如：样式表（StyleeSheet）是包含了 CSS 规则集的对象，然而 `LCUI_StyleSheet` 里面却是 CSS 属性列表，正确的命名是 `Style`。
+- **纠正 CSS 相关数据类型的命名：** 部分 CSS 相关数据类型命名并不正确，例如：样式表（StyleeSheet）是包含了 CSS 规则集的对象，然而 `LCUI_StyleSheet` 里面却是 CSS 属性列表，正确的命名是 `StyleDeclaration`。
 
 ## 详细设计
 
 ### 调整命名
 
-参考 LibCSS 库和 MDN 中的 CSS 相关文档，调整标识符的命名。
-
 为提升辨识度，所有标识符命名以 `css_` 开头。
+
+参考 LibCSS 库和 MDN 中的 [CSS 对象模型](https://developer.mozilla.org/zh-CN/docs/Web/API/CSS_Object_Model)相关的文章，确定 CSS 库中的对象类型名和释义：
+
+<table>
+<thead>
+<tr>
+  <td width="120">对象</td>
+  <td width="160">CSSOM 中的名称</td>
+  <td width="160">CSS 库中的名称</td>
+  <td>含义</td>
+</tr>
+</thead>
+<tbody>
+  <tr>
+    <td>
+      样式表
+    </td>
+    <td>
+      CSSStyleSheet
+    </td>
+    <td>
+      css_stylesheet_t
+    </td>
+    <td>各种规则的集合</td>
+  </tr>
+  <tr>
+    <td>
+      样式声明
+    </td>
+    <td>
+      CSSStyleDeclaration
+    </td>
+    <td>
+      css_style_decl_t
+    </td>
+    <td>CSS 属性键值对的集合</td>
+  </tr>
+  <tr>
+    <td>
+      规则
+    </td>
+    <td>
+      CSSRule
+    </td>
+    <td>
+      css_rule_t
+    </td>
+    <td>
+     （字面意思）
+    </td>
+  </tr>
+  <tr>
+    <td>
+      样式规则
+    </td>
+    <td>
+      CSSStyleRule
+    </td>
+    <td>
+      css_style_rule_t
+    </td>
+    <td>
+      定义了一组属性和值，以及应用这些属性和值的元素。
+    </td>
+  </tr>
+</tbody>
+</table>
 
 主要标识符命名改动如下：
 
@@ -75,7 +140,7 @@ int main(void)
 
 ### 调整数据结构
 
-参考 [CSS Typed Object Model API](https://developer.mozilla.org/en-US/docs/Web/API/CSS_Typed_OM_API) 文档中的各种值类型接口，将 `LCUI_Style` 中的 `px`、`sp`、`style`、`val_string`、`val_image` 等成员改为如下所示的几类成员：
+参考 [CSS Typed Object Model API](https://developer.mozilla.org/en-US/docs/Web/API/CSS_Typed_OM_API#cssstylevalue_interfaces) 文档中的各种值类型接口，将 `LCUI_Style` 中的 `px`、`sp`、`style`、`val_string`、`val_image` 等成员改为如下所示的几类成员：
 
 ```c
 struct css_style_value_t {
@@ -103,6 +168,32 @@ struct css_style_value_t {
 ### 移除字体库和 UI 库依赖
 
 `css_font_face_parser_t` 内新增 callback 函数指针成员，新增 `css_font_face_parser_on_load()` 函数用于设置 callback，由 UI 库调用它来响应字体加载。
+
+### 调整 UI 库的样式操作方法
+
+取消 `Widget_SetStyle()` 函数宏，新增几个函数用于操作不同类型的属性值，命名以 `ui_widget_set_style_` 开头，后面接 CSS 属性值类型名，例如：
+
+```c
+void ui_widget_set_style_unit_value(ui_widget_t *w, int key,
+                                    css_numeric_value_t value,
+                                    css_unit_t unit);
+void ui_widget_set_style_keyword_value(ui_widget_t *w, int key,
+                                       css_keyword_value_t value);
+void ui_widget_set_style_color_value(ui_widget_t *w, int key,
+                                     css_color_value_t value);
+void ui_widget_set_style_numeric_value(ui_widget_t *w, int key,
+                                       css_numeric_value_t value);
+```
+
+用法对比：
+
+```c
+// 之前
+Widget_SetStyle(widget, key_width, 100, px);
+
+// 之后
+ui_widget_set_style_unit_value(widget, css_prop_width, 100, CSS_UNIT_PX);
+```
 
 ## 缺点
 

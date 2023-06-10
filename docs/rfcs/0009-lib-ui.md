@@ -50,11 +50,22 @@ int main(void)
 
 ## 详细设计
 
+### 命名
+
 子库命名为 ui，所有标识符名称以 `ui_` 开头。
 
 将 `LCUI_RectF` 重命名为 `ui_rect_t`，相关操作函数移入 `ui_rect.c` 文件内。
 
+### 根部件
+
 根级部件由 `ui_root()` 函数获取，对根追加新部件可靠 `ui_root_append()` 函数完成。
+
+### 属性操作
+
+将属性操作函数名称中的 attribute 单词简写为 attr，即：
+
+- `ui_widget_set_attr()`
+- `ui_widget_get_attr()`
 
 ## 缺点
 
