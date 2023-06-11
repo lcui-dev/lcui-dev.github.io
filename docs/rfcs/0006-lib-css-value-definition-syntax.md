@@ -60,11 +60,11 @@ css_register_shorthand_property(css_key_background, "background",
 
 ## 动机
 
-（待补充）
+当前版本的 CSS 库添加自定义属性并不方便，主要问题如下：
 
-2.x 版本中的 CSS 属性解析器的设计比较简单，
-
-- CSS 属性的初始值分散在 UI 库中的各个样式计算函数中
+- **值解析函数不可复用：** 值解析函数 `SplitValues()` 是内部函数，应用层代码添加的自定义属性解析函数无法复用它，这意味着要么在 CSS 库内添加自定义属性，要么在应用层重新实现一遍值解析。
+- **解析函数参数比较复杂：** 属性解析函数第一个参数是解析器上下文，虽然它包含了各种数据，但大多数情况下函数内部只是通过它往样式声明中写入属性值，这增加了函数复杂度和参数理解成本。
+- **各个 CSS 属性的有效值集不明确：** 为了节约开发成本，CSS库在设计之初仅支持部分属性和值。然而，现有文档并未详细说明每个属性的有效值集，因此需要逐个测试才能确定可用的属性和值。
 
 ## 详细设计
 
@@ -104,15 +104,54 @@ where
         - <length>{2,4}
 ```
 
-从中可以看出，CSS 值的类型定义数据适合存储在树形结构中，而值的匹配过程就是树的遍历过程。
+由此可见，CSS 值的类型定义数据适合存储在树形结构中，值的匹配过程就是树的遍历过程。
 
-（待补充）
+为了完整表达值定义，节点应包含关键字（`inset`）、数据类型（`<length>`）、组合符号（`&&` `||`）、数量符号（`{2,4}`），那么节点的数据结构可以设计成这样：
+
+```c
+struct css_valdef_t {
+        css_valdef_sign_t sign;
+        unsigned min_count;
+        unsigned max_count;
+        const css_valdef_t *source;
+        union {
+                css_keyword_value_t ident;
+                /** list_t<css_valdef_t> */
+                list_t children;
+                const css_value_type_record_t *type;
+        };
+};
+```
+
+- sign 标识使用哪个组合符号。
+- `min_count`、`max_count` 记录了数量符号 `{2,4}` 中的数量范围。
+- source 记录源类型，用于实现类型别名。
+- ident 标识关键字的编号，当 sign 值为 `NONE` 时生效，针对值为 `normal` 这种关键字的情况。
+- children 用于记录子节点，当 sign 值为组合符号时生效，针对值为 `none || auto` 这种包含一组值的情况。
+- type 指针指向类型记录，当 sigin 值为 CSS_VALDEF_SIGN_ANGLE_BRACKET 时生效，针对值为 `<data-type>` 的情况。
 
 ### 解析器
 
+基于有限状态自动机实现解析器，状态由以下枚举表达：
+
+```c
+typedef enum css_valdef_parser_target_t {
+        CSS_VALDEF_PARSER_TARGET_NONE,
+        CSS_VALDEF_PARSER_TARGET_ERROR,
+        CSS_VALDEF_PARSER_TARGET_KEYWORD,
+        CSS_VALDEF_PARSER_TARGET_DATA_TYPE,
+        CSS_VALDEF_PARSER_TARGET_CURLY_BRACES,
+        CSS_VALDEF_PARSER_TARGET_BRACKETS,
+        CSS_VALDEF_PARSER_TARGET_QUESTION_MARK,
+        CSS_VALDEF_PARSER_TARGET_SIGN
+} css_valdef_parser_target_t;
+```
+
+状态流转的实现比较简单，主要的复杂度和难点都集中在值的处理上。
+
 解析器初始创建一个根结点，类型为 Juxtaposition。
 
-对于相同类型的结点，解析后将它们存放在同一个数组中，例如：
+对于相同组合符号的结点，解析后将它们存放在同一个数组中，例如：
 
 ```text
 left | center | right
@@ -124,7 +163,10 @@ left | center | right
 SingleBarCombinator(["left", "center", "right"])
 ```
 
-#### 解析方括号组合器
+当解析到其它组合器符号时或是解析结束时，会涉及到父节点和子节点的修改。例如：
+
+- 当解析到 `left && right |` 末尾的 `|` 时，需要将当前值 `right` 追加到 `&&` 组合符号的数组值中，然后将父值的符号改为 `|`，使数据结构变为 `[left && right] |`。
+- 当解析到 `left | right &&` 末尾的 `&&` 时，需要追加新的 `&&` 符号的数组值，然后将当前值 `right` 追加到该数组中，使数据结构变为 `left | [right && ]`。
 
 在添加支持方括号之前，解析的都是 `none | auto` `<length> || <line-style> || <line-width>` 这种线性且类型单一的定义，对解析结果的操作类似于对数组操作，但有了方括号后，数据结构变成了树形，需要操作父子结点，这似乎变得复杂了一点，为此我们不得不重新思考现有的设计是否符合解析方括号的需求。
 
@@ -136,7 +178,7 @@ SingleBarCombinator(["left", "center", "right"])
 
 匹配器的工作流程是先从字符串中读入值，然后将之与值定义进行匹配。
 
-#### 读取值
+**读取值：**
 
 字符串中的每个值都由空白符分隔，在判定分隔点时需要考虑到被单引号或双引号的字符串，例如：`"Microsoft YaHei"`，处理引号的方式很简单：对其进行计数，当遇到空白符时，如果计数为 0 则判定为分隔点，否则继续读取下个字符。
 
@@ -155,11 +197,11 @@ SingleBarCombinator(["left", "center", "right"])
 + i++;
 ```
 
-#### 存储匹配的值
+**存储匹配的值：**
 
 将已匹配的值存为数组，然后给匹配函数增加一个用于记录下标的参数。
 
-#### 匹配复杂的定义
+**匹配复杂的定义：**
 
 首先看 background-position 的值定义：
 
@@ -191,7 +233,7 @@ SingleBarCombinator(["left", "center", "right"])
 
 这个问题的本质在于单杆匹配器匹配的是第一个值定义而不是匹配度最高的值定义，那么解决方法就是给它增加匹配度判断，选择匹配度最高的结果返回，最后由根匹配器根据是否还有剩余未匹配的值来判断是否完全匹配，这样就能解决上述复杂值定义的匹配问题。
 
-#### 匹配问号
+**匹配问号：**
 
 问号修饰的是可选值定义，当该值定义与当前值不匹配时可切换到下个值定义继续匹配。按照现在的值读取规则，匹配器在匹配完可选值定义后会读取下个值，这并不符合预期，那么该如何调整规则？
 
