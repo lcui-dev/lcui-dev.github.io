@@ -1,3 +1,7 @@
 {
-  "label": "渲染布料动画"
+  "label": "渲染布料动画",
+  "link": {
+    "type": "generated-index",
+    "slug": "tutorials/render-fabric"
+  }
 }
