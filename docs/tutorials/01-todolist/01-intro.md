@@ -7,3 +7,13 @@
   todo list app with ES6</a> by Mert Cukuren (<a href="https://codepen.io/knyttneve">@knyttneve</a>)
   on <a href="https://codepen.io">CodePen</a>.
 </iframe>
+
+## 前置要求
+
+本教程假定你已经具备以下条件：
+
+- 熟练掌握 C 语言，能够解决常见的编译和链接报错
+- 了解至少一种 UI 开发库及其运作原理
+- 了解 HTML 和 CSS，有网页编写经验
+
+对于 UI 开发来说，一个完全的新手也许并不适合上手就学习 UI 库——最好是掌握了基础知识再回来。
