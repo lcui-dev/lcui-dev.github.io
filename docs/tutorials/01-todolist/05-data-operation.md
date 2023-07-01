@@ -146,8 +146,8 @@ void tasklist_filter(list_t *list, int status, list_t *filtered_list)
         list_node_t *node;
 
         for (list_each(node, list)) {
-                if ((status === 0 && ((task_t*)node->data)->is_completed) ||
-                  (status === 1 && !((task_t*)node->data)->is_completed)) {
+                if ((status == 0 && ((task_t*)node->data)->is_completed) ||
+                  (status == 1 && !((task_t*)node->data)->is_completed)) {
                     continue;
                 }
                 list_append(filtered_list, node->data);
