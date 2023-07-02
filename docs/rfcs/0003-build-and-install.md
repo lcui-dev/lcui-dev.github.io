@@ -69,6 +69,10 @@ target("cssparser")
     add_packages("libcss")
 ```
 
+:::note
+该安装方式暂未实现，欢迎参与改进此意见稿。
+:::
+
 ### 从源码目录安装
 
 假设应用程序项目目录中有个 vendor 目录专用于存放第三方库的源码，那么，我们可以手动下载 LCUI 的源码包然后解压到 vendor 目录中，再将 LCUI 的 xmake.lua 包含进来即可：
