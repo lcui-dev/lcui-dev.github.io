@@ -4,11 +4,11 @@
 
 ```c title=src/tasklist.c
 #include "tasklist.h"
-#include <stdbool.h>
 #include <stdlib.h>
 ```
 
 ```c title=src/tasklist.h
+#include <stdbool.h>
 #include <yutil.h>
 ```
 
@@ -20,6 +20,8 @@ typedef struct task_t {
         bool is_completed;
         wchar_t *name;
 } task_t;
+
+typedef list_t tasklist_t;
 ```
 
 ## 初始化
@@ -40,20 +42,23 @@ void tasklist_init(list_t *list);
 ## 追加
 
 ```c title=src/tasklist.c
-task_t *tasklist_append(list_t *list, const wchar_t *name)
+task_t *tasklist_append(tasklist_t *list, const wchar_t *name,
+                        bool is_completed)
 {
         static int id = 1;
         task_t *task = malloc(sizeof(task_t));
 
         task->id = id++;
         task->name = wcsdup(name);
-        task->is_completed = false;
+        task->is_completed = is_completed;
         return task;
 }
+
 ```
 
 ```c title=src/tasklist.h
-task_t *tasklist_append(list_t *list, const wchar_t *name);
+task_t *tasklist_append(tasklist_t *list, const wchar_t *name,
+                        bool is_completed);
 ```
 
 局部变量 id 用于给每个任务分配自增的 id，自增方式就是简单的 `id++`。使用 static 关键字修饰 id 是为了让它在函数执行完后仍保留值，下次执行函数时能继续自增，而不是始终从 1 开始自增。
@@ -65,7 +70,7 @@ task_t *tasklist_append(list_t *list, const wchar_t *name);
 更新操作由查找和修改组成，其中的修改操作仅仅是修改任务的状态，专为这种场景而为函数增加参数的话有点过度设计了，因此，只实现查找功能即可。
 
 ```c title=src/tasklist.c
-task_t *tasklist_find(list_t *list, int id)
+task_t *tasklist_find(tasklist_t *list, int id)
 {
         task_t *task;
         list_node_t *node;
@@ -73,7 +78,7 @@ task_t *tasklist_find(list_t *list, int id)
         for (list_each(node, list)) {
                 task = node->data;
                 if (task->id == id) {
-                        return id;
+                        return task;
                 }
         }
         return NULL;
@@ -81,7 +86,7 @@ task_t *tasklist_find(list_t *list, int id)
 ```
 
 ```c title=src/tasklist.h
-task_t *tasklist_find(list_t *list, int id);
+task_t *tasklist_find(tasklist_t *list, int id);
 ```
 ## 删除
 
@@ -94,7 +99,7 @@ void task_destroy(task_t *task)
         free(task);
 }
 
-bool tasklist_remove(list_t *list, int id)
+bool tasklist_remove(tasklist_t *list, int id)
 {
         list_node_t *node;
 
@@ -110,7 +115,7 @@ bool tasklist_remove(list_t *list, int id)
 ```
 
 ```c title=src/tasklist.h
-bool tasklist_remove(list_t *list, int id);
+bool tasklist_remove(tasklist_t *list, int id);
 ```
 
 定义 `task_destroy()` 函数是为了统一任务列表的删除和清空函数中的任务销毁方法。
@@ -120,14 +125,14 @@ bool tasklist_remove(list_t *list, int id);
 list 的 `list_destroy()` 函数可清空列表内容，给它传入 `task_destroy` 函数指针即可自定义列表项的销毁方法。
 
 ```c title=src/tasklist.c
-void tasklist_empty(list_t *list)
+void tasklist_empty(tasklist_t *list)
 {
         list_destroy(list, (list_item_destructor_t)task_destroy);
 }
 ```
 
 ```c title=src/tasklist.h
-void tasklist_empty(list_t *list);
+void tasklist_empty(tasklist_t *list);
 ```
 
 ## 筛选
@@ -141,7 +146,7 @@ void tasklist_empty(list_t *list);
 - 3: 全部
 
 ```c title=src/tasklist.c
-void tasklist_filter(list_t *list, int status, list_t *filtered_list)
+void tasklist_filter(tasklist_t *list, int status, tasklist_t *filtered_list)
 {
         list_node_t *node;
 
@@ -156,5 +161,5 @@ void tasklist_filter(list_t *list, int status, list_t *filtered_list)
 ```
 
 ```c title=src/tasklist.h
-void tasklist_filter(list_t *list, int status, list_t *filtered_list);
+void tasklist_filter(tasklist_t *list, int status, tasklist_t *filtered_list);
 ```
