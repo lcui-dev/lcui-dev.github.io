@@ -100,7 +100,7 @@ void ui_tasklist_append(const wchar_t *name, bool is_completed);
 void ui_tasklist_filter(int status)
 {
         list_node_t *node;
-        list_t filtered_list;
+        tasklist_t filtered_list;
         tasklist_init(&filtered_list);
         tasklist_filter(tasklist, status, &filtered_list);
         ui_widget_empty(ui_tasklist);
@@ -173,7 +173,102 @@ void update_count(void)
 
 在后续的增加和删除任务操作中，都需要调用该函数。
 
-## 响应输入框的按键事件
+## 点击状态图标切换状态
+
+定义点击事件处理函数，先找到事件目标所属任务部件，然后获取 id 字符串，将其转换成 int 类型后再更新任务列表中的对应任务状态。
+
+```c title=src/ui_tasklist.c
+void ui_tasklist_on_click(ui_widget_t *w, ui_event_t *e, void *arg)
+{
+        int id;
+        const char *id_str;
+        task_t *task;
+        ui_widget_t *item;
+        ui_event_t ev;
+
+        // 找到当前事件目标所属的任务部件
+        for (item = e->target; !ui_widget_has_class(item, "task-item");
+             item = item->parent)
+                ;
+        id_str = ui_widget_get_attr(item, "data-id");
+        if (!id_str || sscanf(id_str, "%d", &id) != 1) {
+                return;
+        }
+        if (ui_widget_has_class(e->target, "task-status")) {
+                task = tasklist_find(tasklist, id);
+                if (task != NULL) {
+                        task->is_completed = !task->is_completed;
+                        if (task->is_completed) {
+                                ui_widget_remove_class(item, "is-completed");
+                        } else {
+                                ui_widget_add_class(item, "is-completed");
+                        }
+                }
+        } else if (ui_widget_has_class(e->target, "task-delete")) {
+                ui_widget_remove(item);
+                tasklist_remove(tasklist, id);
+                ui_event_init(&ev, "update");
+                ui_widget_emit_event(item->parent, ev, NULL);
+        }
+}
+```
+
+将之与 click 事件绑定。
+
+```diff title=src/ui_tasklist.c
+  void ui_tasklist_init(ui_widget_t *w, tasklist_t *data)
+  {
+          ui_tasklist = w;
+          tasklist = data;
++         ui_widget_on(w, "click", ui_tasklist_on_click, NULL);
+  }
+```
+
+## 点击 X 图标删除任务
+
+流程和状态图标的一样， 因此复用 `ui_tasklist_on_click()`，在里面添加任务部件和数据的删除代码。
+
+```diff title=src/ui_tasklist.c
+  void ui_tasklist_on_click(ui_widget_t *w, ui_event_t *e, void *arg)
+  {
+          int id;
+          const char *id_str;
+          task_t *task;
+          ui_widget_t *item;
++         ui_event_t ev;
+
+          if (ui_widget_has_class(e->target, "task-status")) {
+  ...
+-         }
++         } else if (ui_widget_has_class(e->target, "task-delete")) {
++                 ui_widget_remove(item);
++                 tasklist_remove(tasklist, id);
++                 ui_event_init(&ev, "update");
++                 ui_widget_emit_event(item->parent, ev, NULL);
++         }
+  }
+```
+
+删除任务后，触发 update 事件以通知主界面更新任务数量。主界面这边需要再添加 update 事件绑定：
+
+```diff title=src/main.c
+  ...
+  int main(int argc, char **argv)
+  {
+  ...
+          ui_root_append(pack);
+          ui_widget_unwrap(pack);
+          ui_widget_set_title(ui_root(), L"Todo list");
+          ui_tasklist_init(ui_get_widget("list"), &tasks);
+          ui_widget_on(ui_get_widget("input"), "keydown", on_input_keydown, NULL);
+          ui_widget_on(ui_get_widget("filters"), "click", on_filter_click, NULL);
++         ui_widget_on(ui_get_widget("list"), "update",
++                      (ui_event_handler_t)update_count, NULL);
+  ...
+          return lcui_main();
+  }
+```
+## 输入框内按下回车键添加新任务
 
 定义按键事件处理函数，当按下的是回车键时，获取输入框的内容，将其创建为任务，然后添加到任务列表中。
 
@@ -203,7 +298,7 @@ void on_input_keydown(ui_widget_t *w, ui_event_t *e, void *arg)
   }
 ```
 
-## 筛选按钮
+## 点击筛选按钮筛选任务列表
 
 定义筛选按钮的点击事件处理函数，根据事件目标的 `data-value` 属性值来筛选任务列表，然后更新任务数量和按钮状态，其中的按钮状态更新方法是遍历每个按钮，移除其它筛选按钮的激活状态，给当前按钮添加激活状态。
 
@@ -216,18 +311,17 @@ void on_filter_click(ui_widget_t *w, ui_event_t *e, void *arg)
                 return;
         }
         if (strcmp(status, "active") == 0) {
-                ui_todolist_filter(0);
+                ui_tasklist_filter(0);
         } else if (strcmp(status, "completed") == 0) {
-                ui_todolist_filter(1);
+                ui_tasklist_filter(1);
         } else {
-                ui_todolist_filter(3);
+                ui_tasklist_filter(3);
         }
         update_count();
         ui_widget_each(ui_get_widget("filters"), ui_widget_remove_class,
                        (void *)"is-active");
         ui_widget_add_class(e->target, "is-active");
 }
-
 ```
 
 在 `main()` 函数中将该函数与 `click` 事件绑定。
@@ -240,7 +334,7 @@ void on_filter_click(ui_widget_t *w, ui_event_t *e, void *arg)
           ui_root_append(pack);
           ui_widget_unwrap(pack);
           ui_widget_set_title(ui_root(), L"Todo list");
-	        ui_tasklist_init(ui_get_widget("list"), &tasks);
+          ui_tasklist_init(ui_get_widget("list"), &tasks);
           ui_widget_on(ui_get_widget("input"), "keydown", on_input_keydown, NULL);
 +         ui_widget_on(ui_get_widget("filters"), "click", on_filter_click, NULL);
   ...
@@ -248,7 +342,7 @@ void on_filter_click(ui_widget_t *w, ui_event_t *e, void *arg)
   }
 ```
 
-## 添加初始数据
+## 预添加几个任务
 
 调用 `tasklist_append()` 函数往任务列表添加几条任务：
 
@@ -266,7 +360,7 @@ void on_filter_click(ui_widget_t *w, ui_event_t *e, void *arg)
           ui_root_append(pack);
           ui_widget_unwrap(pack);
           ui_widget_set_title(ui_root(), L"Todo list");
-	        ui_tasklist_init(ui_get_widget("list"), &tasks);
+          ui_tasklist_init(ui_get_widget("list"), &tasks);
           ui_widget_on(ui_get_widget("input"), "keydown", on_input_keydown, NULL);
 
           update_title();
