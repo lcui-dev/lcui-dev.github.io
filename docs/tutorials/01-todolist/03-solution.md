@@ -5,7 +5,7 @@
 ## 目录结构
 
 ```
-todolist/
+todolist/               项目根目录
     app/                工作目录
     src/                源码目录
         tasklist.c      任务列表数据管理
