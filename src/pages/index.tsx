@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import clsx from "clsx";
+import { translate } from "@docusaurus/Translate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowRight,
@@ -49,20 +50,26 @@ function HomepageHeader() {
   return (
     <header className={clsx("hero", styles.heroBanner)}>
       <div className="container text--center">
-        <h1 className="hero__title">
-          The C library
-          <br />
-          for user interfaces
-        </h1>
+        <h1
+          className="hero__title"
+          dangerouslySetInnerHTML={{ __html: translate({ id: "home.title" }) }}
+        ></h1>
         <p className="hero__subtitle">
-          {siteConfig.customFields.description as string}
+          {translate({
+            id: "home.subtitle",
+            message:
+              "An open source UI toolkit for building cross-platform desktop apps.",
+          })}
         </p>
         <div className={styles.buttons}>
           <CopyInput
             className="margin-right--sm"
             value="npx create-lcui-app@latest"
           />
-          <Link className="button button--primary button--lg" to="/docs/introduction">
+          <Link
+            className="button button--primary button--lg"
+            to="/docs/introduction"
+          >
             Get Started
             <FontAwesomeIcon icon={faArrowRight} className="margin-left--sm" />
           </Link>
@@ -74,10 +81,13 @@ function HomepageHeader() {
 
 export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
+
   return (
     <Layout
-      title={`${siteConfig.title} - ${siteConfig.tagline}`}
-      description="Description will go into a meta tag in <head />"
+      title={`${translate({ id: "site.title" })} - ${translate({
+        id: "site.tagline",
+      })}`}
+      description={translate({ id: "site.description" })}
     >
       <HomepageHeader />
       <main className="homepage-main">

@@ -1,0 +1,54 @@
+{
+  "version.label": {
+    "message": "3.x 🚧",
+    "description": "The label for version current"
+  },
+  "sidebar.docsSidebar.category.基础": {
+    "message": "基础",
+    "description": "The label for category 基础 in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.基础.link.generated-index.description": {
+    "message": "在本教程中，你将构建一个待办清单程序。本教程不假设任何现有的 LCUI 知识。你将在教程中学习的技术是构建任何 LCUI 应用程序的基础，充分理解它将使您深入了解 LCUI。",
+    "description": "The generated-index page description for category 基础 in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.实例": {
+    "message": "实例",
+    "description": "The label for category 实例 in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.组件": {
+    "message": "组件",
+    "description": "The label for category 组件 in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.CSS": {
+    "message": "CSS",
+    "description": "The label for category CSS in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.图形": {
+    "message": "图形",
+    "description": "The label for category 图形 in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.布局": {
+    "message": "布局",
+    "description": "The label for category 布局 in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.字体": {
+    "message": "字体",
+    "description": "The label for category 字体 in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.驱动": {
+    "message": "驱动",
+    "description": "The label for category 驱动 in sidebar docsSidebar"
+  },
+  "sidebar.tutorialSidebar.category.待办清单": {
+    "message": "待办清单",
+    "description": "The label for category 待办清单 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.待办清单.link.generated-index.description": {
+    "message": "在本教程中，你将构建一个待办清单程序。本教程不假设任何现有的 LCUI 知识。你将在教程中学习的技术是构建任何 LCUI 应用程序的基础，充分理解它将使您深入了解 LCUI。",
+    "description": "The generated-index page description for category 待办清单 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.渲染布料动画": {
+    "message": "渲染布料动画",
+    "description": "The label for category 渲染布料动画 in sidebar tutorialSidebar"
+  }
+}
