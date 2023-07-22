@@ -1,4 +1,5 @@
 import React from "react";
+import { translate } from "@docusaurus/Translate";
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import CodeBlock from "@theme/CodeBlock";
@@ -31,14 +32,23 @@ export default function HomepageExample() {
       status: "active",
     },
   ] as const;
+
   return (
     <section>
       <div className="container">
-        <h2 className="text--center">Create user interfaces from widgets</h2>
+        <h2 className="text--center">
+          {translate({
+            id: "home.example.title",
+            message: "Create user interfaces from widgets",
+          })}
+        </h2>
         <p className="text--center description margin-bottom--lg margin-top--lg">
-          LCUI lets you build user interfaces out of individual pieces called
-          widgets. Create your own LCUI widgets and combine them into entire
-          screens, pages, and apps.
+          {translate({
+            id: "home.example.description",
+            message: `LCUI lets you build user interfaces out of individual pieces called
+            widgets. Create your own LCUI widgets and combine them into entire
+            screens, pages, and apps.`,
+          })}
         </p>
         <ExamplePreview
           highlightMap={{

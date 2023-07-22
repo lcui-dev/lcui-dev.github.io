@@ -1,4 +1,5 @@
 import React from "react";
+import { translate } from "@docusaurus/Translate";
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import CodeBlock from "@theme/CodeBlock";
@@ -12,11 +13,19 @@ export default function HomepageAdvancedExample() {
   return (
     <section>
       <div className="container">
-        <h2 className="text--center">Add interactivity wherever you need it</h2>
+        <h2 className="text--center">
+          {translate({
+            id: "home.example2.title",
+            message: "Add interactivity wherever you need it",
+          })}
+        </h2>
         <p className="text--center description margin-bottom--lg margin-top--lg">
-          The widgets in LCUI are event driven. You can add event handlers to
-          widgets in response to interactions, and then make some content or
-          style changes in the event handlers.
+          {translate({
+            id: "home.example2.description",
+            message: `The widgets in LCUI are event driven. You can add event handlers to
+    widgets in response to interactions, and then make some content or
+    style changes in the event handlers.`,
+          })}
         </p>
         <ExamplePreview
           highlightMap={{
