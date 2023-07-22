@@ -280,9 +280,129 @@
     "description": "The title of the tag list page"
   },
   "home.title": {
-    "message": "用于图形用户界面的<br>C 函数库"
+    "message": "用于构建用户界面的<br>C 函数库"
   },
   "home.subtitle": {
     "message": "一个用于构建跨平台桌面应用程序的开源图形用户界面工具包。"
+  },
+  "home.get_started": {
+    "message": "快速上手"
+  },
+  "home.features.ui.title": {
+    "message": "可移植的 UI 库"
+  },
+  "home.features.ui.description": {
+    "message": "UI 核心库的依赖项很少，且无系统 API 依赖。"
+  },
+  "home.features.gl.title": {
+    "message": "小巧的图形库"
+  },
+  "home.features.gl.description": {
+    "message": "提供用于 UI 渲染所需的基本的图形处理能力。"
+  },
+  "home.features.plat.title": {
+    "message": "系统 API"
+  },
+  "home.features.plat.description": {
+    "message": "提供平台相关的 API，例如窗口管理、消息循环、剪切板等。"
+  },
+  "home.features.router.title": {
+    "message": "路由管理器"
+  },
+  "home.features.router.description": {
+    "message": "定义路由、映射它们到部件，根据 URL 显示对应的部件。"
+  },
+  "home.features.i18n.title": {
+    "message": "国际化"
+  },
+  "home.features.i18n.description": {
+    "message": "配置多个语言的翻译文本，在运行时自由切换语言。"
+  },
+  "home.features.window.title": {
+    "message": "窗口映射"
+  },
+  "home.features.window.description": {
+    "message": "映射部件到系统窗口以让其内容能够同步到窗口内。"
+  },
+  "home.features.ui_widgets.title": {
+    "message": "预置部件"
+  },
+  "home.features.ui_widgets.description": {
+    "message": "文本、文本编辑、按钮、滚动条等。"
+  },
+  "home.features.css.title": {
+    "message": "CSS 支持"
+  },
+  "home.features.css.description": {
+    "message": "解析 CSS、选择样式、计算样式。"
+  },
+  "home.features.xml.title": {
+    "message": "XML 支持"
+  },
+  "home.features.xml.description": {
+    "message": "用 XML 声明用户界面。"
+  },
+  "home.features.title": {
+    "message": "留视界面中包含什么？"
+  },
+  "home.features.description": {
+    "message": "一些制作用户界面所需的库。"
+  },
+  "home.example.title": {
+    "message": "从部件创建用户界面"
+  },
+  "home.example.description": {
+    "message": "留视界面能让你使用部件来构建用户界面每个部分。创建你自己的留视界面小部件并将它们组合到整个屏幕、页面和应用程序中。"
+  },
+  "home.example2.title": {
+    "message": "在你需要的任何地方添加交互"
+  },
+  "home.example2.description": {
+    "message": "留视界面是事件驱动的，你可以为部件添加事件处理器，然后在里面做内容变更或样式改动。"
+  },
+  "home.widgets.checkbox.name": {
+    "message": "勾选框"
+  },
+  "home.widgets.checkbox.description": {
+    "message": "在一组选项中进行多项选择，或标记某个选项的状态。"
+  },
+  "home.widgets.switch.name": {
+    "message": "开关"
+  },
+  "home.widgets.switch.description": {
+    "message": "表示两种状态或开关状态之间的切换。"
+  },
+  "home.widgets.radio.name": {
+    "message": "单选框"
+  },
+  "home.widgets.radio.description": {
+    "message": "从一组选项中选择一个。"
+  },
+  "home.widgets.dropdown.name": {
+    "message": "下拉菜单"
+  },
+  "home.widgets.dropdown.description": {
+    "message": "在可切换的上下文覆盖层中显示选项列表和更多内容。"
+  },
+  "home.widgets.message.name": {
+    "message": "消息"
+  },
+  "home.widgets.message.description": {
+    "message": "显示全局消息作为对用户操作的反馈。"
+  },
+  "home.widgets.modal.name": {
+    "message": "模态对话框"
+  },
+  "home.widgets.modal.description": {
+    "message": "使用模态小部件将对话框添加到应用程序中，用于灯箱、用户通知或完全自定义的内容。"
+  },
+  "home.widgets.title": {
+    "message": "让用户界面更现代"
+  },
+  "home.widgets.description": {
+    "message": "我们提供了一个现代的部件库以满足你的需要"
+  },
+  "home.widgets.btn_explore": {
+    "message": "浏览更多部件"
   }
 }

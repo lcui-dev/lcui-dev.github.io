@@ -9,7 +9,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import Link from "@docusaurus/Link";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import HomepageFeatures from "@site/src/components/HomepageFeatures";
 import HomepageWidgets from "@site/src/components/HomepageWidgets";
@@ -46,7 +45,6 @@ function CopyInput({ className, value }: { className: string; value: string }) {
 }
 
 function HomepageHeader() {
-  const { siteConfig } = useDocusaurusContext();
   return (
     <header className={clsx("hero", styles.heroBanner)}>
       <div className="container text--center">
@@ -64,13 +62,13 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <CopyInput
             className="margin-right--sm"
-            value="npx create-lcui-app@latest"
+            value="npx lcui create my-lcui-app"
           />
           <Link
             className="button button--primary button--lg"
             to="/docs/introduction"
           >
-            Get Started
+            {translate({ id: 'home.get_started', 'message': 'Get Started' })}
             <FontAwesomeIcon icon={faArrowRight} className="margin-left--sm" />
           </Link>
         </div>
@@ -80,8 +78,6 @@ function HomepageHeader() {
 }
 
 export default function Home(): JSX.Element {
-  const { siteConfig } = useDocusaurusContext();
-
   return (
     <Layout
       title={`${translate({ id: "site.title" })} - ${translate({

@@ -1,0 +1,38 @@
+{
+  "version.label": {
+    "message": "2.x",
+    "description": "The label for version 2.x"
+  },
+  "sidebar.docsSidebar.category.基础": {
+    "message": "基础",
+    "description": "The label for category 基础 in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.实例": {
+    "message": "实例",
+    "description": "The label for category 实例 in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.组件": {
+    "message": "组件",
+    "description": "The label for category 组件 in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.CSS": {
+    "message": "CSS",
+    "description": "The label for category CSS in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.布局": {
+    "message": "布局",
+    "description": "The label for category 布局 in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.图形": {
+    "message": "图形",
+    "description": "The label for category 图形 in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.字体": {
+    "message": "字体",
+    "description": "The label for category 字体 in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.驱动": {
+    "message": "驱动",
+    "description": "The label for category 驱动 in sidebar docsSidebar"
+  }
+}

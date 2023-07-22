@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import classNames from "classnames";
+import { translate } from "@docusaurus/Translate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faExternalLink } from "@fortawesome/free-solid-svg-icons";
 import Checkbox from "./Checkbox";
 import Switch from "./Switch";
 import Radio from "./Radio";
@@ -8,7 +10,6 @@ import Dropdown from "./Dropdown";
 import Message from "./Message";
 import "./lc-design.css";
 import styles from "./style.module.css";
-import { faExternalLink } from "@fortawesome/free-solid-svg-icons";
 
 function CheckboxPreview() {
   return (
@@ -143,46 +144,90 @@ export default function HomepageWidgets() {
   const widgets = [
     {
       preview: <CheckboxPreview />,
-      name: "Checkbox",
-      description:
-        "Make multiple selections in a set of options, or mark the status of an option.",
+      name: translate({
+        id: "home.widgets.checkbox.name",
+        message: "Checkbox",
+      }),
+      description: translate({
+        id: "home.widgets.checkbox.description",
+        message:
+          "Make multiple selections in a set of options, or mark the status of an option.",
+      }),
     },
     {
       preview: <SwitchPreview />,
-      name: "Switch",
-      description:
-        "Represent the switching between two states or on-off state.",
+      name: translate({
+        id: "home.widgets.switch.name",
+        message: "Switch",
+      }),
+      description: translate({
+        id: "home.widgets.switch.description",
+        message: "Represent the switching between two states or on-off state.",
+      }),
     },
     {
       preview: <RadioPreview />,
-      name: "Radio",
-      description: "Select one of a set of options.",
+      name: translate({
+        id: "home.widgets.radio.name",
+        message: "Radio",
+      }),
+      description: translate({
+        id: "home.widgets.radio.description",
+        message: "Select one of a set of options.",
+      }),
     },
     {
       preview: <DropdownPreview />,
-      name: "Dropdown",
-      description:
-        "Toggle contextual overlays for displaying lists of links and more with the LCUI dropdown widget.",
+      name: translate({
+        id: "home.widgets.dropdown.name",
+        message: "Dropdown",
+      }),
+      description: translate({
+        id: "home.widgets.dropdown.description",
+        message:
+          "Toggle contextual overlays for displaying lists of links and more with the LCUI dropdown widget.",
+      }),
     },
     {
       preview: <MessagePreview />,
-      name: "Message",
-      description:
-        "Display global messages as feedback in response to user operations.",
+      name: translate({
+        id: "home.widgets.message.name",
+        message: "Message",
+      }),
+      description: translate({
+        id: "home.widgets.message.description",
+        message:
+          "Display global messages as feedback in response to user operations.",
+      }),
     },
     {
       preview: <ModalPreview />,
-      name: "Modal",
-      description:
-        "Use modal widget to add dialogs to your application for lightboxes, user notifications, or completely custom content.",
+      name: translate({
+        id: "home.widgets.modal.name",
+        message: "Modal",
+      }),
+      description: translate({
+        id: "home.widgets.modal.description",
+        message:
+          "Use modal widget to add dialogs to your application for lightboxes, user notifications, or completely custom content.",
+      }),
     },
   ];
+
   return (
     <section>
       <div className="container">
-        <h2 className="text--center">Make the user interface more modern</h2>
+        <h2 className="text--center">
+          {translate({
+            id: "home.widgets.title",
+            message: "Make the user interface more modern",
+          })}
+        </h2>
         <p className="text--center description">
-          We provide a modern widget library to meet your needs
+          {translate({
+            id: "home.widgets.description",
+            message: "We provide a modern widget library to meet your needs",
+          })}
         </p>
         <ul className={styles.widgets}>
           {widgets.map((w) => (
@@ -199,8 +244,14 @@ export default function HomepageWidgets() {
             href="https://github.com/lcui-dev/lc-design/tree/develop/docs/components"
             target="_blank"
           >
-            Explore UI widgets
-            <FontAwesomeIcon icon={faExternalLink} className="margin-left--sm" />
+            {translate({
+              id: "home.widgets.btn_explore",
+              message: "Explore UI widgets",
+            })}
+            <FontAwesomeIcon
+              icon={faExternalLink}
+              className="margin-left--sm"
+            />
           </a>
         </div>
       </div>
