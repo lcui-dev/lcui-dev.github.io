@@ -343,7 +343,7 @@
     "message": "用 XML 声明用户界面。"
   },
   "home.features.title": {
-    "message": "留视界面中包含什么？"
+    "message": "留视界面包含什么？"
   },
   "home.features.description": {
     "message": "一些制作用户界面所需的库。"
@@ -352,7 +352,7 @@
     "message": "从部件创建用户界面"
   },
   "home.example.description": {
-    "message": "留视界面能让你使用部件来构建用户界面每个部分。创建你自己的留视界面小部件并将它们组合到整个屏幕、页面和应用程序中。"
+    "message": "留视界面能让你使用部件来构建用户界面每个部分。创建你自己的界面部件并将它们组合到整个屏幕、页面和应用程序中。"
   },
   "home.example2.title": {
     "message": "在你需要的任何地方添加交互"
