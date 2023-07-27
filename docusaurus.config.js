@@ -120,7 +120,7 @@ const config = {
             items: [
               {
                 label: "Tutorials",
-                to: "/docs/next/tutorials",
+                to: "/docs/next/tutorials/todolist",
               },
             ],
           },
