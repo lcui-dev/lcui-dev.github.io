@@ -102,7 +102,7 @@ struct Page {
 
 - [LCPkg](https://github.com/lc-soft/lcpkg) —— 包管理工具，可以用来下载安装 LCUI 及相关库的二进制包。
 - [LCUI CLI](https://github.com/lc-ui/lcui-cli) —— LCUI 的命令行开发工具，用于简化 LCUI 应用程序项目的开发。
-- [CMake](www.cmake.org) —— 跨平台构建工具，用于构建我们的程序。
+- [CMake](https://www.cmake.org) —— 跨平台构建工具，用于构建我们的程序。
 
 ## 开发
 
@@ -640,7 +640,7 @@ npm start
 
 如果一切正常的话，程序的运行效果会是这样：
 
-[![LCUI Router App](create-a-browser-like-app/lcui-router-app.gif "LCUI Router App")](/static/images/devlog/lcui-router-app.gif)
+[![LCUI Router App](create-a-browser-like-app/lcui-router-app.gif "LCUI Router App")](./create-a-browser-like-app/lcui-router-app.gif)
 
 ## 结语
 

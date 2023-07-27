@@ -131,9 +131,9 @@ void test_list(void)
 
 具体细节可查阅以下文档：
 
-- 需求文档：[lib/yutil/docs/RA](../../../lib/yutil/docs/RA/)
-- 调研文档：[lib/yutil/docs/Research_Report](../../../lib/yutil/docs/RA/)
-- API 设计文档：[lib/yutil/docs/API](../../../lib/yutil/docs/RA/)
+- 需求文档：[lib/yutil/docs/RA](https://gitee.com/yidianyiko/yutil/tree/main/docs/RA/)
+- 调研文档：[lib/yutil/docs/Research_Report](https://gitee.com/yidianyiko/yutil/tree/main/docs/RA/)
+- API 设计文档：[lib/yutil/docs/API](https://gitee.com/yidianyiko/yutil/tree/main/docs/RA/)
 
 # 缺点
 
