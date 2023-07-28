@@ -8,15 +8,19 @@
     "description": "The alt text of navbar logo"
   },
   "item.label.指南": {
-    "message": "指南",
+    "message": "Guides",
     "description": "Navbar item with label 指南"
   },
   "item.label.教程": {
-    "message": "教程",
+    "message": "Tutorials",
     "description": "Navbar item with label 教程"
   },
   "item.label.博客": {
-    "message": "博客",
+    "message": "Blog",
+    "description": "Navbar item with label 博客"
+  },
+  "item.label.意见征集": {
+    "message": "RFCs",
     "description": "Navbar item with label 博客"
   },
   "item.label.GitHub": {

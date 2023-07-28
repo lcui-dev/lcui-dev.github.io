@@ -1,6 +1,6 @@
 {
   "home.title": {
-    "message": "home.title"
+    "message": "The C library <br>for user interfaces"
   },
   "home.subtitle": {
     "message": "An open source UI toolkit for building cross-platform desktop apps."
@@ -9,13 +9,13 @@
     "message": "Get Started"
   },
   "site.title": {
-    "message": "site.title"
+    "message": "LCUI"
   },
   "site.tagline": {
-    "message": "site.tagline"
+    "message": "The C library for user interfaces"
   },
   "site.description": {
-    "message": "site.description"
+    "message": "An open source UI toolkit for building cross-platform desktop apps."
   },
   "theme.ErrorPageContent.title": {
     "message": "This page crashed.",
@@ -404,5 +404,8 @@
   },
   "home.widgets.btn_explore": {
     "message": "Explore UI widgets"
+  },
+  "site.notice": {
+    "message": "<b>Warning:</b> This website is still under development and the content needs to be adjusted"
   }
 }

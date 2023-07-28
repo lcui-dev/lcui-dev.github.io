@@ -68,7 +68,7 @@ function HomepageHeader() {
             className="button button--primary button--lg"
             to="/docs/introduction"
           >
-            {translate({ id: 'home.get_started', 'message': 'Get Started' })}
+            {translate({ id: "home.get_started", message: "Get Started" })}
             <FontAwesomeIcon icon={faArrowRight} className="margin-left--sm" />
           </Link>
         </div>
@@ -85,6 +85,19 @@ export default function Home(): JSX.Element {
       })}`}
       description={translate({ id: "site.description" })}
     >
+      <div className="container margin-top--md">
+        <div
+          className="alert alert--warning"
+          role="alert"
+          dangerouslySetInnerHTML={{
+            __html: translate({
+              id: "site.notice",
+              message:
+                "<b>Warning:</b> The website is still under development and the content needs to be adjusted",
+            }),
+          }}
+        />
+      </div>
       <HomepageHeader />
       <main className="homepage-main">
         <HomepageFeatures />
