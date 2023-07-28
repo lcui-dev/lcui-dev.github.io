@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkwebsite=self.webpackChunkwebsite||[]).push([[822],{6399:e=>{e.exports=JSON.parse('{"title":"\u57fa\u7840","slug":"base","permalink":"/zh-Hans/docs/base","navigation":{"previous":{"title":"\u5f00\u59cb","permalink":"/zh-Hans/docs/introduction"},"next":{"title":"\u5b89\u88c5","permalink":"/zh-Hans/docs/base/installation"}}}')}}]);
