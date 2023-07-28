@@ -28,7 +28,7 @@ const config = {
   // metadata like html lang. For example, if your site is Chinese, you may want
   // to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: "zh-Hans",
+    defaultLocale: "en",
     locales: ["en", "zh-Hans"],
   },
 
@@ -95,6 +95,7 @@ const config = {
           {
             type: "docSidebar",
             sidebarId: "rfcSidebar",
+            label: "意见征集",
             position: "left",
           },
           { to: "/blog", label: "博客", position: "left" },

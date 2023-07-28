@@ -6,7 +6,7 @@
     "message": "用于图形用户界面的 C 函数库"
   },
   "site.description": {
-    "message": "site.description"
+    "message": "一个开源的、用于构建跨平台桌面应用程序的图形用户界面库。"
   },
   "theme.ErrorPageContent.title": {
     "message": "页面已崩溃。",
@@ -404,5 +404,8 @@
   },
   "home.widgets.btn_explore": {
     "message": "浏览更多部件"
+  },
+  "site.notice": {
+    "message": "<b>注意：</b>该网站仍在开发中，内容有待调整"
   }
 }
