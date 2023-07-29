@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import classNames from "classnames";
+import clsx from "clsx";
 import { translate } from "@docusaurus/Translate";
 import { faExternalLink } from "@fortawesome/free-solid-svg-icons";
 import Icon from "@site/src/components/Icon";
@@ -111,7 +111,7 @@ function ModalPreview() {
         Launch demo modal
       </button>
       {show && <div className="modal-backdrop" />}
-      <div className={classNames("modal", show && "show")}>
+      <div className={clsx("modal", show && "show")}>
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">

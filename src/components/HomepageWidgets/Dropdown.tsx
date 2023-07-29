@@ -1,4 +1,4 @@
-import classNames from "classnames";
+import clsx from "clsx";
 import React, { useEffect, useState } from "react";
 
 function Dropdown({
@@ -25,7 +25,7 @@ function Dropdown({
           setOpen(!open);
         },
       })}
-      <div className={classNames("dropdown-menu", open && "show")}>
+      <div className={clsx("dropdown-menu", open && "show")}>
         {children}
       </div>
     </div>
@@ -40,20 +40,20 @@ function DropdownItem({
   return (
     <div
       {...props}
-      className={classNames("dropdown-item", className, disabled && "disabled")}
+      className={clsx("dropdown-item", className, disabled && "disabled")}
     />
   );
 }
 
 function DropdownDivider({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <div {...props} className={classNames("dropdown-divider", className)} />
+    <div {...props} className={clsx("dropdown-divider", className)} />
   );
 }
 
 function DropdownHeader({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <div {...props} className={classNames("dropdown-header", className)} />
+    <div {...props} className={clsx("dropdown-header", className)} />
   );
 }
 

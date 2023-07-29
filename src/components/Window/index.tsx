@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import classNames from "classnames";
 import React from "react";
 import { faClose, faMinus } from "@fortawesome/free-solid-svg-icons";
 import { faSquare } from "@fortawesome/free-regular-svg-icons";
@@ -16,7 +15,7 @@ export default function Window({
   children: React.ReactNode;
 }) {
   return (
-    <div className={classNames(className, styles.window, "shadow--md")}>
+    <div className={clsx(className, styles.window, "shadow--md")}>
       <div className={styles["window-header"]}>
         {title}
         <div className={styles["window-buttons"]}>
