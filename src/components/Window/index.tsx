@@ -1,10 +1,10 @@
-import { faClose, faMinus } from "@fortawesome/free-solid-svg-icons";
-import { faSquare } from "@fortawesome/free-regular-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import clsx from "clsx";
 import classNames from "classnames";
 import React from "react";
+import { faClose, faMinus } from "@fortawesome/free-solid-svg-icons";
+import { faSquare } from "@fortawesome/free-regular-svg-icons";
+import Icon from "@site/src/components/Icon";
 import styles from "./index.module.css";
-import clsx from "clsx";
 
 export default function Window({
   className,
@@ -21,15 +21,15 @@ export default function Window({
         {title}
         <div className={styles["window-buttons"]}>
           <div className={styles["window-button"]}>
-            <FontAwesomeIcon icon={faMinus} />
+            <Icon icon={faMinus} />
           </div>
           <div className={styles["window-button"]}>
-            <FontAwesomeIcon icon={faSquare} />
+            <Icon icon={faSquare} />
           </div>
           <div
             className={clsx(styles["window-button"], styles["window-close"])}
           >
-            <FontAwesomeIcon icon={faClose} />
+            <Icon icon={faClose} />
           </div>
         </div>
       </div>
