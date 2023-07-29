@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 import { translate } from "@docusaurus/Translate";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExternalLink } from "@fortawesome/free-solid-svg-icons";
+import Icon from "@site/src/components/Icon";
 import Checkbox from "./Checkbox";
 import Switch from "./Switch";
 import Radio from "./Radio";
@@ -248,7 +248,7 @@ export default function HomepageWidgets() {
               id: "home.widgets.btn_explore",
               message: "Explore UI widgets",
             })}
-            <FontAwesomeIcon
+            <Icon
               icon={faExternalLink}
               className="margin-left--sm"
             />

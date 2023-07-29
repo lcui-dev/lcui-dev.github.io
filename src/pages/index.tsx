@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 import { translate } from "@docusaurus/Translate";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Icon from "@site/src/components/Icon";
 import {
   faArrowRight,
   faCheck,
@@ -34,9 +34,9 @@ function CopyInput({ className, value }: { className: string; value: string }) {
         <input type="text" value={value} readOnly />
         <div className={styles.copy}>
           {copied ? (
-            <FontAwesomeIcon icon={faCheck} />
+            <Icon icon={faCheck} />
           ) : (
-            <FontAwesomeIcon icon={faClipboard} />
+            <Icon icon={faClipboard} />
           )}
         </div>
       </div>
@@ -69,7 +69,7 @@ function HomepageHeader() {
             to="/docs/introduction"
           >
             {translate({ id: "home.get_started", message: "Get Started" })}
-            <FontAwesomeIcon icon={faArrowRight} className="margin-left--sm" />
+            <Icon icon={faArrowRight} className="margin-left--sm" />
           </Link>
         </div>
       </div>
