@@ -1,4 +1,4 @@
-import classNames from "classnames";
+import clsx from "clsx";
 import React, { useState } from "react";
 
 export default function Switch({
@@ -21,7 +21,7 @@ export default function Switch({
   const [checked, setChecked] = useState(defaultChecked);
   return (
     <div
-      className={classNames(
+      className={clsx(
         "switch",
         checked && "checked",
         disabled && "disabled"
@@ -35,7 +35,7 @@ export default function Switch({
       <div className="switch-inner">
         <div className="switch-inner-bar">
           <div
-            className={classNames(
+            className={clsx(
               "switch-inner-on-block",
               checkedIcon && `icon icon-${checkedIcon}`
             )}
@@ -44,7 +44,7 @@ export default function Switch({
           </div>
           <div className="switch-inner-slider"></div>
           <div
-            className={classNames(
+            className={clsx(
               "switch-inner-off-block",
               uncheckedIcon && `icon icon-${uncheckedIcon}`
             )}

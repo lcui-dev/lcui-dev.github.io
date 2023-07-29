@@ -1,4 +1,4 @@
-import classNames from "classnames";
+import clsx from "clsx";
 import React, { useRef, useState } from "react";
 import "./style.scss";
 import styles from "./style.module.scss";
@@ -39,7 +39,7 @@ export function TaskItem({
 }) {
   return (
     <div
-      className={classNames(
+      className={clsx(
         "task-item",
         item.status === "completed" && "is-completed"
       )}
@@ -78,7 +78,7 @@ export default function TodoList({ className }: { className?: string }) {
     },
   ]);
   return (
-    <div className={classNames(styles.root, className)}>
+    <div className={clsx(styles.root, className)}>
       <div className="app">
         <div className="header">
           <div className="title">Todo list</div>
@@ -90,7 +90,7 @@ export default function TodoList({ className }: { className?: string }) {
               {filters.map((s) => (
                 <div
                   key={s}
-                  className={classNames(
+                  className={clsx(
                     "task-filter",
                     s === filter && "is-active"
                   )}

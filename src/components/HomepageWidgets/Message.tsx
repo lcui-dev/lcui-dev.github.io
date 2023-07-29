@@ -1,4 +1,4 @@
-import classNames from "classnames";
+import clsx from "clsx";
 import React from "react";
 
 export default function Message({
@@ -16,7 +16,7 @@ export default function Message({
   }[type];
   return (
     <div
-      className={classNames(
+      className={clsx(
         "message-notice-wrapper",
         type && `message-notice-${type}`
       )}
@@ -24,7 +24,7 @@ export default function Message({
       <div className="message-notice">
         {icon && (
           <div
-            className={classNames("message-notice-icon icon", `icon-${icon}`)}
+            className={clsx("message-notice-icon icon", `icon-${icon}`)}
           ></div>
         )}
         <div className="message-notice-content">{children}</div>

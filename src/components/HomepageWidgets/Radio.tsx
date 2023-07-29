@@ -1,4 +1,4 @@
-import classNames from "classnames";
+import clsx from "clsx";
 import React, { useState } from "react";
 
 export default function Radio({
@@ -14,7 +14,7 @@ export default function Radio({
 }) {
   return (
     <div
-      className={classNames(
+      className={clsx(
         "radio",
         checked && "checked",
         disabled && "disabled"

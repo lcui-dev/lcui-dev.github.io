@@ -1,4 +1,4 @@
-import classNames from "classnames";
+import clsx from "clsx";
 import React, { useState } from "react";
 
 export default function Checkbox({
@@ -13,7 +13,7 @@ export default function Checkbox({
   const [checked, setChecked] = useState(defaultChecked);
   return (
     <div
-      className={classNames(
+      className={clsx(
         "checkbox",
         checked && "checked",
         disabled && "disabled"
