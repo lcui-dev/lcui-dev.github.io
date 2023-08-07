@@ -64,3 +64,76 @@
 .text--muted {
   opacity: 0.8;
 }
+
+.arch {
+  text-align: center;
+  padding: 1em;
+  border: 1px solid #eee;
+  margin-bottom: 1em;
+  font-size: 13px;
+  background: #fafafa;
+  border-radius: 4px;
+}
+
+.arch-layer {
+  border: 1px solid #eee;
+  padding: 1em;
+  margin: 1em 0;
+  border-radius: 4px;
+}
+
+.arch-row {
+  display: flex;
+  padding: 0.5em;
+}
+
+.arch-layer:last-child {
+  margin-bottom: 0;
+}
+
+.arch-card-list {
+  display: flex;
+  margin: 0 -0.5em -0.5em -0.5em;
+}
+
+.arch-layer > .arch-layer {
+  margin: 0.5em;
+}
+
+.arch-card {
+  border: 1px solid #eee;
+  padding: 0.5em 1em;
+  flex: auto;
+  margin: 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+.arch-green {
+  background: #f6ffed;
+}
+
+.arch-green .arch-card {
+  color: #fff;
+  background: #52c41a;
+}
+
+.arch-orange.arch-card {
+  color: #fff;
+  background: #fa8c16;
+}
+
+.arch-yellow {
+  background: #fcffe6;
+}
+
+.arch-yellow .arch-card {
+  color: #fff;
+  background: #a0d911;
+}
+
+.arch-yellow-2 {
+  background: #ffffb8;
+}

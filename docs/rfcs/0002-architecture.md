@@ -11,7 +11,43 @@
 
 ## 基本示例
 
-新的目录结构：
+架构：
+
+<div className="arch">
+  <b>Your LCUI Application</b>
+  <div className="arch-layer arch-yellow-2">UI Widgets</div>
+  <div className="arch-layer arch-yellow-2">
+    LCUI Runtime
+  </div>
+  <div className="arch-layer arch-row arch-yellow-2">
+    <div className="arch-layer arch-yellow">
+      UI kit
+      <div className="arch-card-list">
+        <div className="arch-card">UI XML</div>
+        <div className="arch-card">UI Router</div>
+        <div className="arch-card">UI Cursor</div>
+        <div className="arch-card">UI Server</div>
+        <div className="arch-card">UI I18n</div>
+      </div>
+    </div>
+    <div className="arch-card arch-orange">Platform</div>
+  </div>
+  <div className="arch-layer arch-green">
+    <div className="arch-card-list">
+      <div className="arch-card">YUtil</div>
+      <div className="arch-card">I18n</div>
+      <div className="arch-card">PandaGL</div>
+      <div className="arch-card">CSS</div>
+      <div className="arch-card">UI</div>
+      <div className="arch-card">Thread</div>
+      <div className="arch-card">Worker</div>
+     </div>
+  </div>
+</div>
+
+按照子库的依赖关系，从上到下排列。
+
+目录结构：
 
 ```text
 docs/
