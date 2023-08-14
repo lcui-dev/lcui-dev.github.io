@@ -1,3 +1,7 @@
+---
+description: UIMutationObserver 提供监听部件的属性、位置、尺寸、子树等变化的能力。
+---
+
 # UI 变更观察器
 
 - 开始日期：2023-04-02

@@ -1,3 +1,7 @@
+---
+description: 采用新的构建工具 XMake 取代原有的 AutoTool 和 Visual Studio 构建方式，降低构建和使用成本。新增几种基于 XMake 的安装方式说明，并提供多种新的基于 XMake 的依赖包安装方式。
+---
+
 # 构建和安装
 
 - 开始日期：2023-03-28
