@@ -47,7 +47,7 @@ fw、fh、htc、vtc 这四个变量仅在下面的全局执行语句中使用，
 
 grabRadius 依赖 canvas.width，而 canvas.width 在其它地方也有用到，因此，我们可以先定义全局变量 canvasWidth，然后将 canvas.width 全部替换为 canvasWidth，以解除对 UI 部分的依赖。canvas.height 亦是如此。
 
-points 和 spans 是数组类型，分别用于存放 Point 和 Span 类型对象。对于这种可动态长度的数组，我可以使用指针实现：
+points 和 spans 是数组类型，分别用于存放 Point 和 Span 类型对象。对于这种可动态长度的数组，我们可以使用指针实现：
 
 ```c
 // fabric.c
