@@ -8,6 +8,9 @@
   "home.get_started": {
     "message": "Get Started"
   },
+  "home.install": {
+    "message": "Install"
+  },
   "site.title": {
     "message": "LCUI"
   },

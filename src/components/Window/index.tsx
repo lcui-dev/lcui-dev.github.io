@@ -5,18 +5,24 @@ import { faSquare } from "@fortawesome/free-regular-svg-icons";
 import Icon from "@site/src/components/Icon";
 import styles from "./index.module.css";
 
+export interface WindowProps extends React.ComponentProps<'div'> {
+  className?: string;
+  title?: string;
+  icon?: React.ReactNode;
+  children: React.ReactNode;
+}
+
 export default function Window({
   className,
-  title,
+  icon,
+  title = "LCUI Display",
   children,
-}: {
-  className?: string;
-  title: string;
-  children: React.ReactNode;
-}) {
+  ...props
+}: WindowProps) {
   return (
-    <div className={clsx(className, styles.window, "shadow--md")}>
+    <div className={clsx(className, styles.window, "shadow--md")} {...props}>
       <div className={styles["window-header"]}>
+        {icon}
         {title}
         <div className={styles["window-buttons"]}>
           <div className={styles["window-button"]}>
