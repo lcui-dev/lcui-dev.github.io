@@ -286,7 +286,10 @@
     "message": "一个用于构建跨平台桌面应用程序的开源图形用户界面工具包。"
   },
   "home.get_started": {
-    "message": "快速上手"
+    "message": "快速入门"
+  },
+  "home.install": {
+    "message": "安装"
   },
   "home.features.ui.title": {
     "message": "可移植的 UI 库"
@@ -310,7 +313,7 @@
     "message": "路由管理器"
   },
   "home.features.router.description": {
-    "message": "定义路由、映射它们到部件，根据 URL 显示对应的部件。"
+    "message": "定义路由、映射它们到组件，根据 URL 显示对应的组件。"
   },
   "home.features.i18n.title": {
     "message": "国际化"
@@ -322,10 +325,10 @@
     "message": "窗口映射"
   },
   "home.features.window.description": {
-    "message": "映射部件到系统窗口以让其内容能够同步到窗口内。"
+    "message": "映射组件到系统窗口以让其内容能够同步到窗口内。"
   },
   "home.features.ui_widgets.title": {
-    "message": "预置部件"
+    "message": "预置组件"
   },
   "home.features.ui_widgets.description": {
     "message": "文本、文本编辑、按钮、滚动条等。"
@@ -349,16 +352,16 @@
     "message": "一些制作用户界面所需的库。"
   },
   "home.example.title": {
-    "message": "从部件创建用户界面"
+    "message": "从组件创建用户界面"
   },
   "home.example.description": {
-    "message": "留视界面能让你使用部件来构建用户界面每个部分。创建你自己的界面部件并将它们组合到整个屏幕、页面和应用程序中。"
+    "message": "留视界面能让你使用组件来构建用户界面每个部分。创建你自己的界面组件并将它们组合到整个屏幕、页面和应用程序中。"
   },
   "home.example2.title": {
     "message": "在你需要的任何地方添加交互"
   },
   "home.example2.description": {
-    "message": "留视界面是事件驱动的，你可以为部件添加事件处理器，然后在里面做内容变更或样式改动。"
+    "message": "留视界面是事件驱动的，你可以为组件添加事件处理器，然后在里面做内容变更或样式改动。"
   },
   "home.widgets.checkbox.name": {
     "message": "勾选框"
@@ -394,16 +397,16 @@
     "message": "模态对话框"
   },
   "home.widgets.modal.description": {
-    "message": "使用模态小部件将对话框添加到应用程序中，用于灯箱、用户通知或完全自定义的内容。"
+    "message": "使用模态小组件将对话框添加到应用程序中，用于灯箱、用户通知或完全自定义的内容。"
   },
   "home.widgets.title": {
     "message": "让用户界面更现代"
   },
   "home.widgets.description": {
-    "message": "我们提供了一个现代的部件库以满足你的需要"
+    "message": "我们提供了一个现代的组件库以满足你的需要"
   },
   "home.widgets.btn_explore": {
-    "message": "浏览更多部件"
+    "message": "浏览更多组件"
   },
   "site.notice": {
     "message": "<b>注意：</b>该网站仍在开发中，内容有待调整"

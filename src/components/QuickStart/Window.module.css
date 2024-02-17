@@ -1,0 +1,9 @@
+.window {
+  max-width: 800px;
+  height: 400px;
+  margin-bottom: 24px;
+}
+
+.icon {
+  margin-right: 8px;
+}

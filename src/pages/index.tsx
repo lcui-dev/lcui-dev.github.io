@@ -16,34 +16,6 @@ import HomepageExample from "@site/src/components/HomepageExample";
 import HomepageAdvancedExample from "@site/src/components/HomepageAdvancedExample";
 import styles from "./index.module.css";
 
-function CopyInput({ className, value }: { className: string; value: string }) {
-  const [copied, setCopied] = useState(false);
-
-  useEffect(() => {
-    const timer = window.setTimeout(() => {
-      if (copied) {
-        setCopied(false);
-      }
-    }, 2000);
-    return () => window.clearTimeout(timer);
-  }, [copied]);
-
-  return (
-    <CopyToClipboard text={value} onCopy={() => setCopied(true)}>
-      <div className={clsx(styles.input, className)}>
-        <input type="text" value={value} readOnly />
-        <div className={styles.copy}>
-          {copied ? (
-            <Icon icon={faCheck} />
-          ) : (
-            <Icon icon={faClipboard} />
-          )}
-        </div>
-      </div>
-    </CopyToClipboard>
-  );
-}
-
 function HomepageHeader() {
   return (
     <header className={clsx("hero", styles.heroBanner)}>
@@ -60,16 +32,18 @@ function HomepageHeader() {
           })}
         </p>
         <div className={styles.buttons}>
-          <CopyInput
-            className="margin-right--sm"
-            value="npx lcui create my-lcui-app"
-          />
           <Link
             className="button button--primary button--lg"
-            to="/docs/introduction"
+            to="/docs/guide/quick-start"
           >
             {translate({ id: "home.get_started", message: "Get Started" })}
             <Icon icon={faArrowRight} className="margin-left--sm" />
+          </Link>
+          <Link
+            className="button button--secondary button--lg margin-left--sm"
+            to="/docs/guide/installation"
+          >
+            {translate({ id: "home.install", message: "Install" })}
           </Link>
         </div>
       </div>
@@ -85,7 +59,7 @@ export default function Home(): JSX.Element {
       })}`}
       description={translate({ id: "site.description" })}
     >
-      <div className="container margin-top--md">
+      {/* <div className="container margin-top--md">
         <div
           className="alert alert--warning"
           role="alert"
@@ -97,13 +71,13 @@ export default function Home(): JSX.Element {
             }),
           }}
         />
-      </div>
+      </div> */}
       <HomepageHeader />
       <main className="homepage-main">
         <HomepageFeatures />
         <HomepageExample />
         <HomepageAdvancedExample />
-        <HomepageWidgets />
+        {/* <HomepageWidgets /> */}
         {/* TODO: add template section */}
         {/* TODO: add showcase section */}
         {/* TODO: add guides section */}

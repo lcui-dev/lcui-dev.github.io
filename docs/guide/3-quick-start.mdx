@@ -1,0 +1,473 @@
+# 快速入门
+
+欢迎来到 LCUI 文档！本章节将介绍一些基础概念和用法，以帮助你快速入门。
+
+:::note
+
+你将会学习到：
+
+- 如何创建应用程序
+- 如何创建和嵌套组件
+- 如何创建自定义组件
+- 如何调整布局
+- 如何使用 XML 描述界面
+- 如何对事件做出响应并更新界面
+
+:::
+
+## 创建应用程序
+
+首先，我们需要包含 LCUI 库的头文件，并初始化 LCUI 应用程序。
+
+```c title=main.c
+#include <LCUI.h>
+#include <LCUI/main.h>
+
+int main(int argc, char *argv[])
+{
+        lcui_init();
+        return lcui_main();
+}
+```
+
+LCUI.h 是 LCUI 库的头文件，而 LCUI/main.h 是则是程序主入口的头文件，仅需由 main 函数所在的源文件包含，它封装了各个平台的程序入口代码，使得 LCUI 应用程序能够统一用 main 函数作为入口。
+
+`lcui_init()` 用于初始化 LCUI 库的各项功能，`lcui_main()` 则负责启动应用程序的主循环，让应用程序保持运行状态并能够响应用户操作。
+
+## 创建和嵌套组件
+
+LCUI 应用程序的用户界面是由**组件**组成的。组件拥有自己的逻辑和外观，可以小到一个按钮，也可以大到整个页面。
+
+```c title=main.c
+#include <LCUI.h>
+#include <LCUI/main.h>
+
+int main(int argc, char *argv[])
+{
+        lcui_init();
+
+        ui_widget_t *text = ui_create_widget("text");
+        ui_text_set_content(text, "Welcome to my app");
+        ui_root_append(text);
+
+        return lcui_main();
+}
+```
+
+import Window from "@site/src/components/QuickStart/Window";
+
+<Window>Welcome to my app</Window>
+
+在这个示例中，我们调用 `ui_create_widget()` 函数创建 text 类型的组件用于显示文本，然后调用 text 组件的 `ui_text_set_content()` 函数设置其文本内容，再调用 `ui_root_append()` 将之追加为根组件的子组件。
+
+在默认的显示模式下，根组件与主窗口绑定，它的尺寸、内容都会同步到主窗口，这意味着将组件追加到根组件内就能让它在窗口中显示。
+
+## 创建自定义组件
+
+LCUI 的组件基于原型来实现组件的抽象和继承，组件原型记录了组件的创建、销毁、绘制、估算尺寸等方法，通过创建组件原型然后修改这些方法即可创建你的自定义组件。
+
+```c title=main.c
+#include <LCUI.h>
+#include <LCUI/main.h>
+
+ui_widget_prototype_t *my_button_proto;
+
+void my_button_init(ui_widget_t *w)
+{
+        ui_button_set_text(w, "I'm a button");
+}
+
+void register_my_button(void)
+{
+        my_button_proto = ui_create_widget_prototype("my-button", "button");
+        my_button_proto->init = my_button_init;
+}
+
+int main(int argc, char *argv[])
+{
+        lcui_init();
+        // highlight-next-line
+        register_my_button();
+
+        ui_widget_t *text = ui_create_widget("text");
+        ui_text_set_content(text, "Welcome to my app");
+        ui_root_append(text);
+        ui_root_append(ui_create_widget("my-button"));
+
+        return lcui_main();
+}
+```
+
+<Window>
+  <div>Welcome to my app</div>
+  <button>I'm a button</button>
+</Window>
+
+在这个示例中，我们创建了组件原型 my-button，继承自 button，指示组件在初始化时将内容设置为 `I'm a button`。
+
+`my_button_proto` 是一个指向组件原型的指针，它被定义为全局变量，以供该类型组件的其它函数使用。
+
+`ui_create_widget_prototype()` 用于创建组件原型，它返回组件原型指针，通过修改原型的 init 函数指针即可自定义组件的初始化方法。
+
+## 添加样式
+
+LCUI 包含 CSS 解析和选择引擎，你可以使用一些简单的 CSS 规则来设置用户界面的视觉效果。
+
+首先创建一个 css 文件，填入以下内容：
+
+```css title=main.css
+root {
+  padding: 24px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+```
+
+然后在 `main()` 函数中调用 `ui_load_css_file()` 函数从文件加载 CSS 规则，再调用 `ui_widget_add_class()` 函数为 text 组件添加 title 类名，以应用 CSS 文件中定义的 `.title` 的样式。
+
+```c title=main.c
+int main(int argc, char *argv[])
+{
+        lcui_init();
+        register_my_button();
+
+        // highlight-next-line
+        ui_load_css_file("main.css");
+
+        ui_widget_t *text = ui_create_widget("text");
+        ui_text_set_content(text, "Welcome to my app");
+        // highlight-next-line
+        ui_widget_add_class(text, "title");
+        ui_root_append(text);
+        ui_root_append(ui_create_widget("my-button"));
+
+        return lcui_main();
+}
+```
+
+<Window>
+  <div style={{ padding: 24 }}>
+    <div style={{ fontSize: 24, fontWeight: "bold", marginBottom: 16 }}>
+      Welcome to my app
+    </div>
+    <button>I'm a button</button>
+  </div>
+</Window>
+
+除了从文件中加载 CSS，你还可以从字符串中加载 CSS：
+
+```c
+// highlight-start
+const char *css_str = "\
+root {\
+  padding: 24px;\
+}\
+\
+.title {\
+  font-size: 24px;\
+  font-weight: bold;\
+  margin-bottom: 16px;\
+}";
+// highlight-end
+
+int main(int argc, char *argv[])
+{
+        lcui_init();
+        register_my_button();
+
+        // highlight-next-line
+        ui_load_css_string(css_str, __FILE__);
+
+        ui_widget_t *text = ui_create_widget("text");
+        ui_text_set_content(text, "Welcome to my app");
+        ui_widget_add_class(text, "title");
+        ui_root_append(text);
+        ui_root_append(ui_create_widget("my-button"));
+
+        return lcui_main();
+}
+```
+
+`ui_load_css_string()` 函数的第二个参数用于标注来源，传入 `__FILE__` 是表示该 CSS 规则来自当前源文件。
+
+## 调整布局
+
+LCUI 支持流式布局（Flow Layout）和弹性盒子布局（Flexible Box）两种布局，用法和效果与网页的布局相似，你可通过设置组件的 CSS display 属性来更改其布局行为。
+
+以常见的垂直水平居中布局为例，我们可以使用弹性盒子布局来实现：
+
+```css title=main.css
+root {
+  padding: 24px;
+  // highlight-start
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  // highlight-end
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+```
+
+<Window>
+  <div style={{ padding: 24, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+    <div style={{ fontSize: 24, fontWeight: "bold", marginBottom: 16 }}>
+      Welcome to my app
+    </div>
+    <button>I'm a button</button>
+  </div>
+</Window>
+
+先设置根组件的 `display` 属性值为 flex 来使用弹性盒子布局，然后设置 `flex-column` 属性为 `column`，将主轴改为垂直轴，让子组件从上到下排列。再设置 `align-items` 和 `justify-content` 属性值为 `center` 来分别控制子组件在垂直和水平轴上居中。
+
+## 使用 XML 描述界面
+
+使用 C 语言以命令式编写用户界面虽然具有很高的灵活性，但当界面变得复杂时，可读性会随着函数调用和参数的数量增多而降低，界面的结构也变得难以理解。相比之下，使用 XML 声明用户界面则能更直观地表达界面结构、各个组件的属性和嵌套关系。
+
+XML 写法如下：
+
+```xml title=main.xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<lcui-app>
+  <resource type="text/css" src="main.css"/>
+  <ui>
+    <text class="title">
+      Welcome to my app
+    </text>
+    <my-button />
+  </ui>
+</lcui-app>
+```
+
+resource 标签用于引入包括 CSS、字体在内的资源文件。ui 标签则用于声明用户界面内的所有组件。
+
+在 `main()` 函数中调用 `ui_load_xml_file()` 函数加载这个 XML 文件：
+
+```c title=main.c
+int main(int argc, char *argv[])
+{
+        lcui_init();
+        register_my_button();
+
+        // highlight-start
+        ui_widget_t *result = ui_load_xml_file("main.xml");
+        if (result) {
+          ui_root_append(result);
+          ui_widget_unwrap(result);
+        } else {
+          return -1;
+        }
+        // highlight-end
+        return lcui_main();
+}
+```
+
+`ui_load_xml_file()` 函数返回一个组件，包含 ui 标签内声明的所有组件，你需要将它追加到目标容器（根组件）内再调用 `ui_widget_unwrap()` 函数将内部的子组件展开到外层。
+
+:::caution
+libxml2 库的体积较大，我们计划在未来的版本中移除 LCUI 对该库的依赖。
+:::
+
+:::note
+推荐使用 [@lcui/cli](https://gitee.com/lcui-dev/lcui-cli) 工具将 xml 文件编译为 C 源码。
+:::
+
+## 响应事件
+
+LCUI 的组件是通过事件来实现与用户交互的，接下来我们让的应用程序能够在用户点击按钮后更改显示的文本。
+
+首先，修改 XML 文件，为需要操作的组件添加 id 属性，以便于在代码中访问它们。
+
+```xml title=main.xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<lcui-app>
+  <resource type="text/css" src="main.css"/>
+  <ui>
+    //highlight-next-line
+    <text class="title" id="title">
+      Welcome to my app
+    </text>
+    //highlight-next-line
+    <my-button id="btn" />
+  </ui>
+</lcui-app>
+```
+
+然后，添加点击（Click）事件处理函数和事件绑定。
+
+```c title=main.c
+// highlight-start
+void handle_my_button_click(ui_widget_t *w, ui_event_t *e, void *arg)
+{
+        ui_text_set_content(e->data, "You clicked my button!");
+}
+// highlight-end
+
+int main(int argc, char *argv[])
+{
+        lcui_init();
+        register_my_button();
+
+        ui_widget_t *result = ui_load_xml_file("main.xml");
+        if (result) {
+          ui_root_append(result);
+          ui_widget_unwrap(result);
+        } else {
+          return -1;
+        }
+        // highlight-start
+        ui_widget_on(ui_get_widget("btn"), "click", ui_get_widget("title"), NULL);
+        // highlight-end
+        return lcui_main();
+}
+```
+
+import EventHandlerExample from '@site/src/components/QuickStart/EventHandlerExample';
+
+<EventHandlerExample />
+
+事件处理函数接受三个参数，第一个参数是绑定事件时的组件，第二个是事件对象，包含事件相关信息和绑定事件时指定的自定义数据，第三个参数在主动触发事件是传入的自定义数据，通常用不到。
+
+`ui_widget_on()` 函数用于将事件与事件处理函数绑定，第一个参数是组件，第二个参数是事件名称，第三个参数是自定义数据，第四个参数是该自定义数据的销毁函数。
+
+:::note
+你可以通过查看 ui/types.h 头文件里的 `ui_event_type_t` 的定义来了解其它事件。
+:::
+
+## 更新界面
+
+通常你会希望你的组件 “记住” 一些信息并展示出来，比如一个按钮被点击的次数。要做到这一点，你需要在你的组件中添加私有数据，而这些数据也可称为“状态”。
+
+首先，你需要定义组件状态的数据结构：
+
+```c title=main.c
+typedef struct {
+        int count;
+} my_button_t;
+```
+
+在初始化函数中初始化状态：
+
+```c title=main.c
+void my_button_init(ui_widget_t *w)
+{
+        // highlight-start
+        my_button_t *data;
+
+        data = ui_widget_add_data(w, my_button_proto, sizeof(my_button_t));
+        data->count = 0;
+        // highlight-end
+}
+```
+
+然后，定义一个更新函数，用于将状态转变为用户界面上实际要展示内容：
+
+```c title=main.c
+void my_button_update(ui_widget_t *w)
+{
+        char str[64];
+        my_button_t *data;
+
+        data = ui_widget_get_data(w, my_button_proto);
+        sprintf(str, "Clicked %d times", data->count);
+        ui_button_set_text(w, str);
+}
+```
+
+初始化函数中也需要调用它来更新初始内容：
+
+```c title=main.c
+void my_button_init(ui_widget_t *w)
+{
+        my_button_t *data;
+
+        data = ui_widget_add_data(w, my_button_proto, sizeof(my_button_t));
+        data->count = 0;
+        // highlight-next-line
+        my_button_update(w);
+}
+```
+
+之后，添加点击事件的处理函数，在里面更改状态并进行更新：
+
+```c title=main.c
+// highlight-start
+void my_button_on_click(ui_widget_t *w, ui_event_t *e, void *arg)
+{
+        my_button_t *data;
+
+        data = ui_widget_get_data(w, my_button_proto);
+        data->count += 1;
+        my_button_update(w);
+}
+// highlight-end
+
+void my_button_init(ui_widget_t *w)
+{
+        my_button_t *data;
+
+        data = ui_widget_add_data(w, my_button_proto, sizeof(my_button_t));
+        data->count = 0;
+        my_button_update(w);
+        // highlight-next-line
+        ui_widget_on(w, "click", my_button_on_click, NULL, NULL);
+}
+```
+
+最后，删掉 `main()` 中的事件绑定代码，像这样：
+
+```c title=main.c
+int main(int argc, char *argv[])
+{
+        lcui_init();
+        register_my_button();
+
+        ui_widget_t *result = ui_load_xml_file("main.xml");
+        if (result) {
+          ui_root_append(result);
+          ui_widget_unwrap(result);
+        } else {
+          return -1;
+        }
+        return lcui_main();
+}
+```
+
+你可以在 XML 文件中添加多个 my-button 组件，然后尝试点击不同的按钮：
+
+```xml title=main.xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<lcui-app>
+  <resource type="text/css" src="main.css"/>
+  <ui>
+    //highlight-start
+    <text class="title">
+      Counters that update separately
+    </text>
+    <my-button />
+    <my-button />
+    //highlight-end
+  </ui>
+</lcui-app>
+```
+
+import WidgetStateExample from '@site/src/components/QuickStart/WidgetStateExample';
+
+<WidgetStateExample />
+
+你会发现，每个按钮会 “记住” 自己的 count，而不影响其他按钮。
+
+## 下一节
+
+至此，你已经了解了如何编写 LCUI 应用程序的基本知识。
+
+接下来你可以查看[教程](../tutorials/todolist)并把它们付诸实践，用 LCUI 建立第一个迷你应用程序。

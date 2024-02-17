@@ -44,7 +44,7 @@ const config = {
           editUrl: "https://github.com/lcui-dev/website/tree/main/docs",
           versions: {
             current: {
-              label: `3.x 🚧`,
+              label: `Next 🚧`,
             },
           },
         },

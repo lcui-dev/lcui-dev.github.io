@@ -11,7 +11,7 @@
   display: flex;
   font-size: 12px;
   line-height: 20px;
-  padding: 6px 0 6px 16px;
+  padding: 6px 0 6px 8px;
   border-bottom: 1px solid var(--ifm-color-emphasis-300);
   background-color: var(--ifm-color-secondary-lightest);
 }
