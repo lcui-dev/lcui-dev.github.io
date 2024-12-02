@@ -13,7 +13,7 @@
 
 示例 CSS 文件内容：
 
-```css title=home.css
+```css title="home.css"
 root {
   background-color: #f6f8fa;
 }
@@ -27,7 +27,7 @@ root {
 
 执行 `lcui compile home.css` 命令后，生成 `home.css.h` 文件：
 
-```c title=home.yml.h
+```c title="home.yml.h"
 static const char *css_str_0 = "\
 root {\
   background-color: #f6f8fa;\

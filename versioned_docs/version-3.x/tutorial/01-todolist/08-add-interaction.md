@@ -8,7 +8,7 @@
 
 和 main 函数类似，界面相关交互的初始化最好是集中在一个函数中执行。我们可以将任务列表界面的初始化函数命名为 `ui_tasklist_init`，然后补充相关代码：
 
-```c title=src/ui_tasklist.c
+```c title="src/ui_tasklist.c"
 #include "ui_tasklist.h"
 
 static tasklist_t *tasklist;
@@ -21,7 +21,7 @@ void ui_tasklist_init(ui_widget_t *w, tasklist_t *data)
 }
 ```
 
-```c title=src/ui_tasklist.h
+```c title="src/ui_tasklist.h"
 #include <ui.h>
 #include "tasklist.h"
 
@@ -30,7 +30,7 @@ void ui_tasklist_init(ui_widget_t *w, tasklist_t *data);
 
 之后修改在 main.c 中增加调用代码：
 
-```diff title=src/main.c
+```diff title="src/main.c"
 + #include "ui_tasklist.h"
   ...
 + static tasklist_t tasks;
@@ -51,7 +51,7 @@ void ui_tasklist_init(ui_widget_t *w, tasklist_t *data);
 
 筛选和新建都需要创建任务部件并插入到列表中，因此定义一个任务部件创建函数：
 
-```c title=src/ui_tasklist.c
+```c title="src/ui_tasklist.c"
 ui_widget_t *ui_taskitem_create(task_t *task)
 {
         char id[32] = { 0 };
@@ -79,7 +79,7 @@ ui_widget_t *ui_taskitem_create(task_t *task)
 
 先更新数据，后更新部件：
 
-```c title=src/ui_tasklist.c
+```c title="src/ui_tasklist.c"
 void ui_tasklist_append(const wchar_t *name, bool is_completed)
 {
         ui_widget_append(ui_tasklist, ui_taskitem_create(tasklist_append(
@@ -88,7 +88,7 @@ void ui_tasklist_append(const wchar_t *name, bool is_completed)
 
 ```
 
-```c title=src/ui_tasklist.h
+```c title="src/ui_tasklist.h"
 void ui_tasklist_append(const wchar_t *name, bool is_completed);
 ```
 
@@ -96,7 +96,7 @@ void ui_tasklist_append(const wchar_t *name, bool is_completed);
 
 由于数据管理模块已经提供了筛选函数，界面层的代码只需要遍历筛选结果然后重新创建任务列表即可。
 
-```c title=src/ui_tasklist.c
+```c title="src/ui_tasklist.c"
 void ui_tasklist_filter(int status)
 {
         list_node_t *node;
@@ -111,7 +111,7 @@ void ui_tasklist_filter(int status)
 }
 ```
 
-```c title=src/ui_tasklist.h
+```c title="src/ui_tasklist.h"
 void ui_tasklist_filter(int status);
 ```
 
@@ -119,7 +119,7 @@ void ui_tasklist_filter(int status);
 
 定义标题更新函数，获取当前时间，将其转换成字符串，然后更新到部件中。
 
-```c title=src/main.c
+```c title="src/main.c"
 void update_title(void)
 {
         char str[64];
@@ -133,7 +133,7 @@ void update_title(void)
 
 增加头文件包含和函数调用：
 
-```diff title=src/main.c
+```diff title="src/main.c"
 + #include <time.h>
   ...
   int main(int argc, char **argv)
@@ -148,7 +148,7 @@ void update_title(void)
 
 定义任务数量更新函数，将当前的任务总数转换成文本，然后更新到部件中。
 
-```c title=src/main.c
+```c title="src/main.c"
 void update_count(void)
 {
         wchar_t text[32];
@@ -161,7 +161,7 @@ void update_count(void)
 
 更新初始数量：
 
-```diff title=src/main.c
+```diff title="src/main.c"
   ...
   int main(int argc, char **argv)
   {
@@ -177,7 +177,7 @@ void update_count(void)
 
 定义点击事件处理函数，先找到事件目标所属任务部件，然后获取 id 字符串，将其转换成 int 类型后再更新任务列表中的对应任务状态。
 
-```c title=src/ui_tasklist.c
+```c title="src/ui_tasklist.c"
 void ui_tasklist_on_click(ui_widget_t *w, ui_event_t *e, void *arg)
 {
         int id;
@@ -215,7 +215,7 @@ void ui_tasklist_on_click(ui_widget_t *w, ui_event_t *e, void *arg)
 
 将之与 click 事件绑定。
 
-```diff title=src/ui_tasklist.c
+```diff title="src/ui_tasklist.c"
   void ui_tasklist_init(ui_widget_t *w, tasklist_t *data)
   {
           ui_tasklist = w;
@@ -228,7 +228,7 @@ void ui_tasklist_on_click(ui_widget_t *w, ui_event_t *e, void *arg)
 
 流程和状态图标的一样， 因此复用 `ui_tasklist_on_click()`，在里面添加任务部件和数据的删除代码。
 
-```diff title=src/ui_tasklist.c
+```diff title="src/ui_tasklist.c"
   void ui_tasklist_on_click(ui_widget_t *w, ui_event_t *e, void *arg)
   {
           int id;
@@ -251,7 +251,7 @@ void ui_tasklist_on_click(ui_widget_t *w, ui_event_t *e, void *arg)
 
 删除任务后，触发 update 事件以通知主界面更新任务数量。主界面这边需要再添加 update 事件绑定：
 
-```diff title=src/main.c
+```diff title="src/main.c"
   ...
   int main(int argc, char **argv)
   {
@@ -272,7 +272,7 @@ void ui_tasklist_on_click(ui_widget_t *w, ui_event_t *e, void *arg)
 
 定义按键事件处理函数，当按下的是回车键时，获取输入框的内容，将其创建为任务，然后添加到任务列表中。
 
-```c title=src/main.c
+```c title="src/main.c"
 void on_input_keydown(ui_widget_t *w, ui_event_t *e, void *arg)
 {
         wchar_t name[256];
@@ -288,7 +288,7 @@ void on_input_keydown(ui_widget_t *w, ui_event_t *e, void *arg)
 
 调用 `ui_widget_on()` 为输入框添加按键事件绑定处理函数。
 
-```diff title=src/main.c
+```diff title="src/main.c"
   ...
   int main(int argc, char **argv)
   {
@@ -302,7 +302,7 @@ void on_input_keydown(ui_widget_t *w, ui_event_t *e, void *arg)
 
 定义筛选按钮的点击事件处理函数，根据事件目标的 `data-value` 属性值来筛选任务列表，然后更新任务数量和按钮状态，其中的按钮状态更新方法是遍历每个按钮，移除其它筛选按钮的激活状态，给当前按钮添加激活状态。
 
-```c title=src/main.c
+```c title="src/main.c"
 void on_filter_click(ui_widget_t *w, ui_event_t *e, void *arg)
 {
         const char *status = ui_widget_get_attr(e->target, "data-value");
@@ -326,7 +326,7 @@ void on_filter_click(ui_widget_t *w, ui_event_t *e, void *arg)
 
 在 `main()` 函数中将该函数与 `click` 事件绑定。
 
-```diff title=src/main.c
+```diff title="src/main.c"
   ...
   int main(int argc, char **argv)
   {
@@ -346,7 +346,7 @@ void on_filter_click(ui_widget_t *w, ui_event_t *e, void *arg)
 
 调用 `tasklist_append()` 函数往任务列表添加几条任务：
 
-```diff title=src/main.c
+```diff title="src/main.c"
 + #include <time.h>
   ...
   int main(int argc, char **argv)

@@ -21,7 +21,7 @@ function scaleToWindow() {
 
 那么接下来就是定义一个用于存储 CSS 代码字符串的变量，然后简单设置布局、背景、边框等样式：
 
-```c title=src/main.c
+```c title="src/main.c"
 const char *app_css = "\
 root {\
         display: flex;\
@@ -42,6 +42,6 @@ fabric {\
 
 之后，在 main() 中添加 CSS 字符串的加载代码：
 
-```c title=src/main.c
+```c title="src/main.c"
 ui_load_css_string(app_css, __FILE__);
 ```

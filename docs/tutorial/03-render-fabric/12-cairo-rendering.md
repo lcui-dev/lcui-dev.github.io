@@ -42,7 +42,7 @@ function renderSpans() {
 
 由此，我们就可以写出完整的绘制代码：
 
-```c title=src/main.c
+```c title="src/main.c"
 // displays points
 void render_points(cairo_t *cr)
 {
@@ -103,7 +103,7 @@ function update() {
 
 `clearCanvas()` 上面的几行代码是更新布料相关数据，与渲染关系不大，可划分为核心部分的代码，因此，我们把它们移动到 `fabric.c` 文件中，定义成 `Fabric_update()` 函数：
 
-```c title=src/fabric.c
+```c title="src/fabric.c"
 void Fabric_update(void)
 {
         int i;
@@ -119,7 +119,7 @@ void Fabric_update(void)
 
 剩下代码可以移入 `ui_fabric_on_frame()` 函数中：
 
-```c title=src/main.c
+```c title="src/main.c"
 void ui_fabric_on_frame(ui_widget_t *w)
 {
         ui_canvas_context_t *ctx = ui_canvas_get_context(w);

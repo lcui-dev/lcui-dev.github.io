@@ -12,7 +12,7 @@ typedef struct ui_fabric_t {
 
 然后添加定时器的创建和销毁代码，以及相关函数：
 
-```c title=src/main.c
+```c title="src/main.c"
 void ui_fabric_on_frame(ui_widget_t *w)
 {
 

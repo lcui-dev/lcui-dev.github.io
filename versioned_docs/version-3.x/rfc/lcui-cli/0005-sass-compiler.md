@@ -13,7 +13,7 @@
 
 示例 SCSS 文件内容：
 
-```scss title=home.scss
+```scss title="home.scss"
 $bg: #f6f8fa;
 $color: #28a745;
 
@@ -30,7 +30,7 @@ root {
 
 执行 `lcui compile home.scss` 命令后，生成 `home.scss.h` 文件：
 
-```c title=home.yml.h
+```c title="home.yml.h"
 static const char *css_str_0 = "\
 root {\
   background-color: #f6f8fa;\

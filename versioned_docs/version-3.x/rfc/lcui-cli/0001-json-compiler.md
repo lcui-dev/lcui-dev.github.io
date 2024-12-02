@@ -13,7 +13,7 @@
 
 示例 JSON 文件内容：
 
-```json title=home.json
+```json title="home.json"
 {
   "name": "lcui-app",
   "children": [
@@ -63,7 +63,7 @@
 
 示例 CSS 文件内容：
 
-```css title=home.css
+```css title="home.css"
 root {
   background-color: #f6f8fa;
 }
@@ -77,7 +77,7 @@ root {
 
 执行 `lcui compile home.json` 命令后，生成 `home.json.h` 文件：
 
-```c title=home.json.h
+```c title="home.json.h"
 /** This file is generated from home.json */
 
 #include <ui.h>

@@ -2,19 +2,19 @@
 
 添加 src/tasklist.c 文件用于存放任务列表数据的管理代码，添加 src/tasklist.h 文件存放公共函数声明。
 
-```c title=src/tasklist.c
+```c title="src/tasklist.c"
 #include "tasklist.h"
 #include <stdlib.h>
 ```
 
-```c title=src/tasklist.h
+```c title="src/tasklist.h"
 #include <stdbool.h>
 #include <yutil.h>
 ```
 
 ## 定义类型
 
-```c title=src/tasklist.h
+```c title="src/tasklist.h"
 typedef struct task_t {
         int id;
         bool is_completed;
@@ -28,20 +28,20 @@ typedef list_t tasklist_t;
 
 直接调用 `list_create()` 函数即可。
 
-```c title=src/tasklist.c
+```c title="src/tasklist.c"
 void tasklist_init(list_t *list)
 {
         list_create(list);
 }
 ```
 
-```c title=src/tasklist.h
+```c title="src/tasklist.h"
 void tasklist_init(list_t *list);
 ```
 
 ## 追加
 
-```c title=src/tasklist.c
+```c title="src/tasklist.c"
 task_t *tasklist_append(tasklist_t *list, const wchar_t *name,
                         bool is_completed)
 {
@@ -56,7 +56,7 @@ task_t *tasklist_append(tasklist_t *list, const wchar_t *name,
 
 ```
 
-```c title=src/tasklist.h
+```c title="src/tasklist.h"
 task_t *tasklist_append(tasklist_t *list, const wchar_t *name,
                         bool is_completed);
 ```
@@ -69,7 +69,7 @@ task_t *tasklist_append(tasklist_t *list, const wchar_t *name,
 
 更新操作由查找和修改组成，其中的修改操作仅仅是修改任务的状态，专为这种场景而为函数增加参数的话有点过度设计了，因此，只实现查找功能即可。
 
-```c title=src/tasklist.c
+```c title="src/tasklist.c"
 task_t *tasklist_find(tasklist_t *list, int id)
 {
         task_t *task;
@@ -85,14 +85,14 @@ task_t *tasklist_find(tasklist_t *list, int id)
 }
 ```
 
-```c title=src/tasklist.h
+```c title="src/tasklist.h"
 task_t *tasklist_find(tasklist_t *list, int id);
 ```
 ## 删除
 
 先遍历任务列表，找到指定 id 的任务，然后调用 list 的删除函数。
 
-```c title=src/tasklist.c
+```c title="src/tasklist.c"
 void task_destroy(task_t *task)
 {
         free(task->name);
@@ -114,7 +114,7 @@ bool tasklist_remove(tasklist_t *list, int id)
 }
 ```
 
-```c title=src/tasklist.h
+```c title="src/tasklist.h"
 bool tasklist_remove(tasklist_t *list, int id);
 ```
 
@@ -124,14 +124,14 @@ bool tasklist_remove(tasklist_t *list, int id);
 
 list 的 `list_destroy()` 函数可清空列表内容，给它传入 `task_destroy` 函数指针即可自定义列表项的销毁方法。
 
-```c title=src/tasklist.c
+```c title="src/tasklist.c"
 void tasklist_empty(tasklist_t *list)
 {
         list_destroy(list, (list_item_destructor_t)task_destroy);
 }
 ```
 
-```c title=src/tasklist.h
+```c title="src/tasklist.h"
 void tasklist_empty(tasklist_t *list);
 ```
 
@@ -145,7 +145,7 @@ void tasklist_empty(tasklist_t *list);
 - 1: 已完成
 - 3: 全部
 
-```c title=src/tasklist.c
+```c title="src/tasklist.c"
 void tasklist_filter(tasklist_t *list, int status, tasklist_t *filtered_list)
 {
         list_node_t *node;
@@ -160,6 +160,6 @@ void tasklist_filter(tasklist_t *list, int status, tasklist_t *filtered_list)
 }
 ```
 
-```c title=src/tasklist.h
+```c title="src/tasklist.h"
 void tasklist_filter(tasklist_t *list, int status, tasklist_t *filtered_list);
 ```

@@ -312,7 +312,7 @@ CSS 的作用域是全局的，如果你担心样式冲突，则可以采用 CSS
 
 首先，添加 `.module.css` 后缀的文件，写入 CSS 代码：
 
-```css title=MyComponent.module.css
+```css title="MyComponent.module.css"
 .card {
   border: 1px solid #eee;
   border-radius: 4px;
@@ -321,7 +321,7 @@ CSS 的作用域是全局的，如果你担心样式冲突，则可以采用 CSS
 
 然后在 `.tsx` 文件中使用 `import` 语句导入它：
 
-```tsx title=MyComponent.tsx
+```tsx title="MyComponent.tsx"
 import styles from './MyComponent.module.css'
 ```
 

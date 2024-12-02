@@ -19,7 +19,7 @@
 
 首先，我们需要包含 LCUI 库的头文件，并初始化 LCUI 应用程序。
 
-```c title=main.c
+```c title="main.c"
 #include <LCUI.h>
 #include <LCUI/main.h>
 
@@ -38,7 +38,7 @@ LCUI.h 是 LCUI 库的头文件，而 LCUI/main.h 是则是程序主入口的头
 
 LCUI 应用程序的用户界面是由**组件**组成的。组件拥有自己的逻辑和外观，可以小到一个按钮，也可以大到整个页面。
 
-```c title=main.c
+```c title="main.c"
 #include <LCUI.h>
 #include <LCUI/main.h>
 
@@ -66,7 +66,7 @@ import Window from "@site/src/components/QuickStart/Window";
 
 LCUI 的组件基于原型来实现组件的抽象和继承，组件原型记录了组件的创建、销毁、绘制、估算尺寸等方法，通过创建组件原型然后修改这些方法即可创建你的自定义组件。
 
-```c title=main.c
+```c title="main.c"
 #include <LCUI.h>
 #include <LCUI/main.h>
 
@@ -115,7 +115,7 @@ LCUI 包含 CSS 解析和选择引擎，你可以使用一些简单的 CSS 规�
 
 首先创建一个 css 文件，填入以下内容：
 
-```css title=main.css
+```css title="main.css"
 root {
   padding: 24px;
 }
@@ -129,7 +129,7 @@ root {
 
 然后在 `main()` 函数中调用 `ui_load_css_file()` 函数从文件加载 CSS 规则，再调用 `ui_widget_add_class()` 函数为 text 组件添加 title 类名，以应用 CSS 文件中定义的 `.title` 的样式。
 
-```c title=main.c
+```c title="main.c"
 int main(int argc, char *argv[])
 {
         lcui_init();
@@ -200,7 +200,7 @@ LCUI 支持流式布局（Flow Layout）和弹性盒子布局（Flexible Box）�
 
 以常见的垂直水平居中布局为例，我们可以使用弹性盒子布局来实现：
 
-```css title=main.css
+```css title="main.css"
 root {
   padding: 24px;
   // highlight-start
@@ -235,7 +235,7 @@ root {
 
 XML 写法如下：
 
-```xml title=main.xml
+```xml title="main.xml"
 <?xml version="1.0" encoding="UTF-8" ?>
 <lcui-app>
   <resource type="text/css" src="main.css"/>
@@ -252,7 +252,7 @@ resource 标签用于引入包括 CSS、字体在内的资源文件。ui 标签�
 
 在 `main()` 函数中调用 `ui_load_xml_file()` 函数加载这个 XML 文件：
 
-```c title=main.c
+```c title="main.c"
 int main(int argc, char *argv[])
 {
         lcui_init();
@@ -287,7 +287,7 @@ LCUI 的组件是通过事件来实现与用户交互的，接下来我们让的
 
 首先，修改 XML 文件，为需要操作的组件添加 id 属性，以便于在代码中访问它们。
 
-```xml title=main.xml
+```xml title="main.xml"
 <?xml version="1.0" encoding="UTF-8" ?>
 <lcui-app>
   <resource type="text/css" src="main.css"/>
@@ -304,7 +304,7 @@ LCUI 的组件是通过事件来实现与用户交互的，接下来我们让的
 
 然后，添加点击（Click）事件处理函数和事件绑定。
 
-```c title=main.c
+```c title="main.c"
 // highlight-start
 void handle_my_button_click(ui_widget_t *w, ui_event_t *e, void *arg)
 {
@@ -349,7 +349,7 @@ import EventHandlerExample from '@site/src/components/QuickStart/EventHandlerExa
 
 首先，你需要定义组件状态的数据结构：
 
-```c title=main.c
+```c title="main.c"
 typedef struct {
         int count;
 } my_button_t;
@@ -357,7 +357,7 @@ typedef struct {
 
 在初始化函数中初始化状态：
 
-```c title=main.c
+```c title="main.c"
 void my_button_init(ui_widget_t *w)
 {
         // highlight-start
@@ -371,7 +371,7 @@ void my_button_init(ui_widget_t *w)
 
 然后，定义一个更新函数，用于将状态转变为用户界面上实际要展示内容：
 
-```c title=main.c
+```c title="main.c"
 void my_button_update(ui_widget_t *w)
 {
         char str[64];
@@ -385,7 +385,7 @@ void my_button_update(ui_widget_t *w)
 
 初始化函数中也需要调用它来更新初始内容：
 
-```c title=main.c
+```c title="main.c"
 void my_button_init(ui_widget_t *w)
 {
         my_button_t *data;
@@ -399,7 +399,7 @@ void my_button_init(ui_widget_t *w)
 
 之后，添加点击事件的处理函数，在里面更改状态并进行更新：
 
-```c title=main.c
+```c title="main.c"
 // highlight-start
 void my_button_on_click(ui_widget_t *w, ui_event_t *e, void *arg)
 {
@@ -425,7 +425,7 @@ void my_button_init(ui_widget_t *w)
 
 最后，删掉 `main()` 中的事件绑定代码，像这样：
 
-```c title=main.c
+```c title="main.c"
 int main(int argc, char *argv[])
 {
         lcui_init();
@@ -444,7 +444,7 @@ int main(int argc, char *argv[])
 
 你可以在 XML 文件中添加多个 my-button 组件，然后尝试点击不同的按钮：
 
-```xml title=main.xml
+```xml title="main.xml"
 <?xml version="1.0" encoding="UTF-8" ?>
 <lcui-app>
   <resource type="text/css" src="main.css"/>

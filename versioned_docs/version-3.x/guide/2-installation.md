@@ -9,7 +9,7 @@
 
 假设应用程序项目目录中有个 vendor 目录专用于存放第三方库的源码，那么我们可以手动下载 LCUI 的源码包然后解压到 vendor 目录中，再将 LCUI 的 xmake.lua 包含进来即可：
 
-```lua title=xmake.lua
+```lua title="xmake.lua"
 includes("vendor/LCUI/xmake.lua")
 
 target("app")
@@ -35,7 +35,7 @@ git submodule update --init --recursive
 
 下载 LCUI 的已编译的文件包，解压到特定的目录内，例如：vendor 目录，然后添加编译和链接配置：
 
-```lua title=xmake.lua
+```lua title="xmake.lua"
 target("myapp")
   add_includedirs("vendor/include")
   add_linkdirs("vendor/lib")

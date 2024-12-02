@@ -11,6 +11,8 @@ LibCSS 是一个 CSS 解析器和选择引擎，由 C 语言编写，是 [NetSur
 
 笔者之所以选择研究 LibCSS 源码，是因为在改造 CSS 库 lcui/css 时遇到了瓶颈。虽然参考 MDN 上的 [CSS 值定义语法文档](https://developer.mozilla.org/en-US/docs/Web/CSS/Value_definition_syntax)设计并实现了 CSS 值定义语法的解析器和匹配器，但在解决取值的问题时一直找不到最优的方案，其难点在于 CSS 属性的值的数量和类型不是固定的，且由于 `background` 这类简写属性的存在，还得考虑如何复用取值逻辑。因此 LibCSS 作为一个 C 语言编写的且已经历过浏览器考验的项目，很适合作为笔者的研究对象。
 
+<!-- truncate -->
+
 ## 用法示例
 
 LibCSS 的示例程序源码在 `examples/exmaple1.c` 中，它展示了如何用 LibCSS 实现 CSS 样式的加载、选择和读取，我们先从它入手，了解 LibCSS 大致的用法和概念，以便于后续的深入研究。

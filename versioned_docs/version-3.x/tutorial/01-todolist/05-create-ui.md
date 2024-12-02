@@ -6,7 +6,7 @@ LCUI 支持使用 XML 标记语言描述界面，相比用 C 语言这种编程�
 
 首先，在 app 目录下新建 `todolist.xml` 文件，内容如下：
 
-```xml title=app/todolist.xml
+```xml title="app/todolist.xml"
 <?xml version="1.0" encoding="UTF-8" ?>
 <lcui-app>
   <ui>
@@ -16,7 +16,7 @@ LCUI 支持使用 XML 标记语言描述界面，相比用 C 语言这种编程�
 
 然后，在 src 目录内新建 main.c 文件，内容如下：
 
-```c title=src/main.c
+```c title="src/main.c"
 #include <LCUI.h>
 #include <LCUI/main.h>
 
@@ -57,7 +57,7 @@ int main(int argc, char **argv)
 
 在 `<ui>` 标签内添加部件：
 
-```diff title=app/todolist.xml
+```diff title="app/todolist.xml"
   <?xml version="1.0" encoding="UTF-8" ?>
   <lcui-app>
     <ui>
@@ -74,7 +74,7 @@ w 是部件 widget 的简写别名，指定的 class 属性值 `app` 是用来�
 
 在主界面内添加部件：
 
-```diff title=app/todolist.xml
+```diff title="app/todolist.xml"
   <?xml version="1.0" encoding="UTF-8" ?>
   <lcui-app>
     <ui>
@@ -90,7 +90,7 @@ w 是部件 widget 的简写别名，指定的 class 属性值 `app` 是用来�
 
 在头部添加部件：
 
-```diff title=app/todolist.xml
+```diff title="app/todolist.xml"
   <?xml version="1.0" encoding="UTF-8" ?>
   <lcui-app>
     <ui>
@@ -109,7 +109,7 @@ w 是部件 widget 的简写别名，指定的 class 属性值 `app` 是用来�
 
 工具区包含任务数和筛选按钮，用于实现将它们两端对齐的布局。
 
-```diff title=app/todolist.xml
+```diff title="app/todolist.xml"
   <?xml version="1.0" encoding="UTF-8" ?>
   <lcui-app>
     <ui>
@@ -127,7 +127,7 @@ w 是部件 widget 的简写别名，指定的 class 属性值 `app` 是用来�
 
 与标题类似，它需要在运行时根据任务列表长度更新内容，那么写法也是类似的：
 
-```diff title=app/todolist.xml
+```diff title="app/todolist.xml"
   <?xml version="1.0" encoding="UTF-8" ?>
   <lcui-app>
     <ui>
@@ -150,7 +150,7 @@ w 是部件 widget 的简写别名，指定的 class 属性值 `app` 是用来�
 
 为了方便在响应点击事件时确定应该切换到哪个状态，每个筛选按钮都有设置 `data-value` 属性，该属性的 `data-` 前缀只是标识它属于附加的数据，并没有其它特殊作用，你也可以命名为 `value`。
 
-```diff title=app/todolist.xml
+```diff title="app/todolist.xml"
   <?xml version="1.0" encoding="UTF-8" ?>
   <lcui-app>
     <ui>
@@ -175,7 +175,7 @@ w 是部件 widget 的简写别名，指定的 class 属性值 `app` 是用来�
 
 TextEdit 部件提供了文本输入能力，为了能够获取它保存的文本内容，需要为其设置 id 属性。文本框在无内容的时候需要显示 `Add a new task...` 文本，这个可以靠 `placeholder` 属性实现。
 
-```diff title=app/todolist.xml
+```diff title="app/todolist.xml"
   <?xml version="1.0" encoding="UTF-8" ?>
   <lcui-app>
     <ui>
@@ -201,7 +201,7 @@ TextEdit 部件提供了文本输入能力，为了能够获取它保存的文�
 
 任务列表是在运行时创建的，因此 XML 中只声明用于容纳所有任务的容器布局，指定 id 属性是便于操作内容。
 
-```diff title=app/todolist.xml
+```diff title="app/todolist.xml"
   <?xml version="1.0" encoding="UTF-8" ?>
   <lcui-app>
     <ui>

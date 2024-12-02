@@ -13,7 +13,7 @@
 
 示例 JavaScript 文件内容：
 
-```js title=home.js
+```js title="home.js"
 module.exports = {
   name: "lcui-app",
   children: [
@@ -60,7 +60,7 @@ module.exports = {
 
 示例 CSS 文件内容：
 
-```css title=home.css
+```css title="home.css"
 root {
   background-color: #f6f8fa;
 }
@@ -74,7 +74,7 @@ root {
 
 执行 `lcui compile home.js` 命令后，生成 `home.js.h` 文件：
 
-```c title=home.js.h
+```c title="home.js.h"
 /** This file is generated from home.js */
 
 #include <ui.h>

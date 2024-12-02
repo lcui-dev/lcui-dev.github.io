@@ -2,7 +2,7 @@
 
 在 `main.c` 中添加头文件包含代码和 `main()` 函数，然后在 `main()` 函数中初始化 LCUi 和布料模拟相关数据：
 
-```c title=src/main.c
+```c title="src/main.c"
 #include <LCUI.h>
 #include <LCUI/main.h>
 #include "fabric.h"

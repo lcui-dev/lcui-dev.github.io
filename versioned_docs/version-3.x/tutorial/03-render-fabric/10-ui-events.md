@@ -30,7 +30,7 @@ ui_widget_on(w, "mouseup", ui_fabric_on_mouseup, NULL);
 
 然后添加事件处理函数：
 
-```c title=src/main.c
+```c title="src/main.c"
 static void ui_fabric_on_mousedown(ui_widget_t *w, ui_event_t *e, void *arg)
 {
         float x, y;

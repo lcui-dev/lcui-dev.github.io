@@ -13,7 +13,7 @@
 
 示例 XML 文件内容：
 
-```yml title=home.yml
+```yml title="home.yml"
 name: lcui-app
 children:
   - name: resource
@@ -51,7 +51,7 @@ children:
 
 示例 CSS 文件内容：
 
-```css title=home.css
+```css title="home.css"
 root {
   background-color: #f6f8fa;
 }
@@ -65,7 +65,7 @@ root {
 
 执行 `lcui compile home.yml` 命令后，生成 `home.yml.h` 文件：
 
-```c title=home.yml.h
+```c title="home.yml.h"
 /** This file is generated from home.yml */
 
 #include <ui.h>

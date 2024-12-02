@@ -13,7 +13,7 @@
 
 示例 tsx 文件内容：
 
-```tsx title=home.tsx
+```tsx title="home.tsx"
 import React from "react";
 import styles from "./home.module.css";
 
@@ -29,7 +29,7 @@ export default function Home() {
 
 示例 CSS 文件内容：
 
-```css title=home.module.css
+```css title="home.module.css"
 :global(.home) {
   padding: 20px;
 }
@@ -49,7 +49,7 @@ export default function Home() {
 
 执行 `lcui compile home.tsx` 命令后，生成 `home.tsx.h` 文件：
 
-```c title=home.tsx.h
+```c title="home.tsx.h"
 /** This file is generated from home.tsx */
 
 #include <ui.h>

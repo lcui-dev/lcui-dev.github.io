@@ -13,7 +13,7 @@
 
 示例 XML 文件内容：
 
-```xml title=home.xml
+```xml title="home.xml"
 <?xml version="1.0" encoding="UTF-8" ?>
 <lcui-app>
   <resource type="text/css" src="home.css"/>
@@ -29,7 +29,7 @@
 
 示例 CSS 文件内容：
 
-```css title=home.css
+```css title="home.css"
 root {
   background-color: #f6f8fa;
 }
@@ -43,7 +43,7 @@ root {
 
 执行 `lcui compile home.xml` 命令后，生成 `home.xml.h` 文件：
 
-```c title=home.xml.h
+```c title="home.xml.h"
 /** This file is generated from home.xml */
 
 #include <ui.h>
