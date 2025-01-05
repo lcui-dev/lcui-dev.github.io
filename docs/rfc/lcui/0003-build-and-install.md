@@ -99,8 +99,7 @@ git submodule update --init --recursive
 更新版本：
 
 ```sh
-git submodule sync --recursive
-git submodule update --init --recursive
+git submodule update --recursive --remote
 ```
 
 ### 从已编译的文件包安装

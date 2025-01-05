@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Window from "./Window";
+import Button from "./Button";
 
 function MyButton() {
   const [count, setCount] = useState(0);
 
-  return <button onClick={() => setCount(count + 1)}>Clicked {count} times</button>
+  return <Button onClick={() => setCount(count + 1)}>Clicked {count} times</Button>
 }
 
 export default function WidgetStateExample() {

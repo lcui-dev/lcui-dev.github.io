@@ -16,14 +16,14 @@ description: 参考其它 C 开源项目，重新制定统一的编码规范。
 ## 基本示例
 
 ```c
-typedef enum parser_state_t {
+typedef enum {
         PARSER_STATE_START,
         PARSER_STATE_DATA_BEGIN,
         PARSER_STATE_DATA_END,
         PARSER_STATE_ERROR
 } parser_state_t;
 
-typedef struct parser_t {
+typedef struct parser {
         /** 解析器状态 */
         parser_state_t state;
 
@@ -61,7 +61,7 @@ parser_t *parser_create(void)
 类型名以 `_t` 结尾，例如：
 
 ```c
-typedef struct foo_t {
+typedef struct foo {
         int bar;
 } foo_t;
 ```
@@ -69,7 +69,7 @@ typedef struct foo_t {
 宏定义和枚举采用大写下划线命名法，例如：
 
 ```c
-typedef enum pd_color_type_t {
+typedef enum {
 	    PD_COLOR_TYPE_INDEX8,
 	    PD_COLOR_TYPE_GRAY8,
 	    PD_COLOR_TYPE_RGB323,

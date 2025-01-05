@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Window from "./Window";
+import Button from "./Button";
 
 export default function EventHandlerExample() {
   const [text, setText] = useState("Welcome to my app");
@@ -18,9 +19,9 @@ export default function EventHandlerExample() {
         <div style={{ fontSize: 24, fontWeight: "bold", marginBottom: 16 }}>
           {text}
         </div>
-        <button onClick={() => setText("You clicked my button!")}>
+        <Button onClick={() => setText("You clicked my button!")}>
           I'm a button
-        </button>
+        </Button>
       </div>
     </Window>
   );
