@@ -32,6 +32,10 @@ const config = {
     locales: ["en", "zh-Hans"],
   },
 
+  markdown: {
+    mermaid: true,
+  },
+  themes: ['@docusaurus/theme-mermaid'],
   presets: [
     [
       "classic",
@@ -148,7 +152,7 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
-        additionalLanguages: ["c", "cpp", "diff", "bash", "css", "scss", "sass", "yaml", "lua"],
+        additionalLanguages: ["c", "cpp", "diff", "bash", "css", "scss", "sass", "yaml", "lua", "json"],
       },
     }),
 };
