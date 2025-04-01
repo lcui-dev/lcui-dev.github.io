@@ -43,7 +43,7 @@
 
 考虑到每个标签页都有自己的选项卡、导航栏和内容区，我们应该将导航栏和内容区域移入到标签页中，结果如下图所示：
 
-![组件化](create-a-browser-like-app/components.png)
+![组件化](browser/components.png)
 
 那么，我们需要开发的组件有如下几个：
 
@@ -57,7 +57,7 @@
 
 接下来我们再试着找出界面元素的排列规则：
 
-![布局](create-a-browser-like-app/layout.png)
+![布局](browser/layout.png)
 
 如上图所示，红色边框标记的元素是横向布局，而绿色边框标记的元素则是纵向布局。从中可知，主界面布局方向为纵向，选项卡栏和标签页从上到下排列，选项卡栏高度固定，标签页面高度自动占满剩余空间。标签页内的导航栏和内容区也是如此。导航栏中的元素布局方向为横向，按钮宽度固定，地址栏输入框的宽度自动占满剩余空间。
 
@@ -468,7 +468,7 @@ LCUI Router 提供了 `router-view` 组件用于渲染与当前路由匹配的�
 
 新标签页面提供欢迎页、关于页、文件浏览页的快捷入口，效果与 Chrome 浏览器一致：
 
-![新标签页](create-a-browser-like-app/newtab.png)
+![新标签页](browser/newtab.png)
 
 编辑 `app/assets/views/home.xml` 文件，添加以下内容：
 
@@ -563,7 +563,7 @@ void UI_InitHomeView(void)
 
 以 Chrome 浏览器的文件浏览页面作为参考对象：
 
-![文件浏览](create-a-browser-like-app/files.png)
+![文件浏览](browser/files.png)
 
 页面标题包含了当前目录的路径，文件列表项由图标、文件名、大小和日期组成，在点击文件名后会跳转到该文件路径，如果是目录，则会渲染该目录的文件列表。
 
@@ -594,7 +594,7 @@ void UI_InitHomeView(void)
 
 Chrome 浏览器的关于页面展示了它的名称、版本号、帮助链接、版权声明：
 
-![关于页](create-a-browser-like-app/about.png)
+![关于页](browser/about.png)
 
 lcui-cli 为我们创建的项目已经预置了用于展示程序信息的 about 组件，我们只需要在 help.xml 文件中引入它即可，代码如下：
 
@@ -640,7 +640,7 @@ npm start
 
 如果一切正常的话，程序的运行效果会是这样：
 
-[![LCUI Router App](create-a-browser-like-app/lcui-router-app.gif "LCUI Router App")](./create-a-browser-like-app/lcui-router-app.gif)
+[![LCUI Router App](browser/lcui-router-app.gif "LCUI Router App")](./browser/lcui-router-app.gif)
 
 ## 结语
 
